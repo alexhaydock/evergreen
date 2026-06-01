@@ -1,0 +1,37 @@
+name: Validate Shell Scripts
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    paths:
+      - "build/**/*.sh"
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Install ShellCheck
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Validate Shell Scripts
+        shell: bash
+        run: |
+          echo "Running shellcheck on build scripts..."
+
+          set -xeuo pipefail
+
+          find "build" -iname '*.sh' -print0 | \
+            while IFS= read -r -d '' script ; do \
+              echo "::group:: ===$(basename "$script")==="
+              shellcheck -x "$script"
+              echo "✓ $script passed shellcheck"
+              echo "::endgroup::"
+            done
+
+          echo "All shell scripts passed validation"
