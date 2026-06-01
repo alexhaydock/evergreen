@@ -1,6 +1,6 @@
-# finpilot
+# evergreen
 
-A template for building custom bootc operating system images based on the lessons from [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). It is designed to be used manually, but is optimized to be bootstraped by GitHub Copilot. After set up you'll have your own custom Linux. 
+A template for building custom bootc operating system images based on the lessons from [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). It is designed to be used manually, but is optimized to be bootstraped by GitHub Copilot. After set up you'll have your own custom Linux.
 
 This template uses the **multi-stage build architecture** from , combining resources from multiple OCI containers for modularity and maintainability. See the [Architecture](#architecture) section below for details.
 
@@ -9,18 +9,6 @@ This template uses the **multi-stage build architecture** from , combining resou
  Instead, you create your own OS repository based on this template, allowing full customization while leveraging Bluefin's robust build system and shared components.
 
 > Be the one who moves, not the one who is moved.
-
-## Guided Copilot Mode
-
-Here are the steps to guide copilot to make your own repo, or just use it like a regular image template.
-
-1. Click the green "Use this as a template" button and create a new repository
-2. Select your owner, pick a repo name for your OS, and a description
-3. In the "Jumpstart your project with Copilot (optional)" add this, modify to your liking:
-
-```
-Use @projectbluefin/finpilot as a template, name the OS the repository name. Ensure the entire operating system is bootstrapped. Ensure all github actions are enabled and running.  Ensure the README has the github setup instructions for cosign and the other steps required to finish the task.
-```
 
 ## What's Included
 
@@ -61,30 +49,6 @@ Use @projectbluefin/finpilot as a template, name the OS the repository name. Ens
 
 ## Quick Start
 
-### 1. Create Your Repository
-
-Click "Use this template" to create a new repository from this template.
-
-### 2. Rename the Project
-
-Important: Change `finpilot` to your repository name in these 6 files:
-
-1. `Containerfile` (line 4): `# Name: your-repo-name`
-2. `Justfile` (line 1): `export image_name := env("IMAGE_NAME", "your-repo-name")`
-3. `README.md` (line 1): `# your-repo-name`
-4. `artifacthub-repo.yml` (line 5): `repositoryID: your-repo-name`
-5. `custom/ujust/README.md` (~line 175): `localhost/your-repo-name:stable`
-6. `.github/workflows/clean.yml` (line 23): `packages: your-repo-name`
-
-### 3. Enable GitHub Actions
-
-- Go to the "Actions" tab in your repository
-- Click "I understand my workflows, go ahead and enable them"
-
-Your first build will start automatically! 
-
-Note: Image signing is disabled by default. Your images will build successfully without any signing keys. Once you're ready for production, see "Optional: Enable Image Signing" below.
-
 ### 4. Customize Your Image
 
 Choose your base image in `Containerfile` (line 48):
@@ -92,7 +56,7 @@ Choose your base image in `Containerfile` (line 48):
 FROM ghcr.io/ublue-os/silverblue-main:latest
 ```
 
-Finpilot layers on top of Fedora Silverblue, not Bluefin. Bluefin's desktop
+evergreen layers on top of Fedora Silverblue, not Bluefin. Bluefin's desktop
 configuration is provided by `@projectbluefin/common` earlier in the build.
 
 Add your packages in `build/10-build.sh`:

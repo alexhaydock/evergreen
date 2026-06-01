@@ -1,4 +1,4 @@
-export image_name := env("IMAGE_NAME", "finpilot")
+export image_name := env("IMAGE_NAME", "evergreen")
 export default_tag := env("DEFAULT_TAG", "stable")
 export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest@sha256:eb2f5db03a3c59e21407579e8cb9a2a9a79af5d103758b6b768b4abbe5b44468")
 

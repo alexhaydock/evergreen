@@ -3,11 +3,11 @@
 ## Initial Setup
 
 ### 1. Rename Template
-- [ ] Update `finpilot` to your name in: Containerfile, Justfile, README.md, artifacthub-repo.yml
+- [x] Update `evergreen` to your name in: Containerfile, Justfile, README.md, artifacthub-repo.yml
 
 ### 2. Enable GitHub Actions
-- [ ] Settings → Actions → General → Enable workflows
-- [ ] Set "Read and write permissions"
+- [x] Settings → Actions → General → Enable workflows
+- [x] Set "Read and write permissions"
 
 ### 3. First Push
 ```bash
@@ -18,7 +18,7 @@ git push origin main
 
 ### 4. Deploy
 ```bash
-sudo bootc switch --transport registry ghcr.io/YOUR_USERNAME/YOUR_REPO:stable
+sudo bootc switch --transport registry ghcr.io/alexhaydock/evergreen:stable
 sudo systemctl reboot
 ```
 
@@ -30,4 +30,3 @@ cosign generate-key-pair
 # Add cosign.key to GitHub Secrets as SIGNING_SECRET
 # Uncomment signing in .github/workflows/build.yml
 ```
-
