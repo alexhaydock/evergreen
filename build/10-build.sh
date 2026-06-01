@@ -39,7 +39,7 @@ cp /ctx/custom/flatpaks/*.preinstall /etc/flatpak/preinstall.d/
 # See: https://github.com/projectbluefin/common/tree/main
 # TODO: Start migrating these into this repo
 ls -lah /ctx/oci/
-cp -fv /ctx/oci/common /
+cp -fvr /ctx/oci/common /
 
 echo "::endgroup::"
 
