@@ -61,6 +61,9 @@ systemctl enable podman.socket
 
 echo "::endgroup::"
 
+# Generate image-info.json for the MOTD to consume
+/ctx/build/00-image-info.sh
+
 # Restore default glob behavior
 shopt -u nullglob
 
