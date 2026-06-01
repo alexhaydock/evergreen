@@ -6,6 +6,9 @@ set -xeuo pipefail
 
 IMAGE_NAME="evergreen"
 IMAGE_VENDOR="alexhaydock"
+IMAGE_TAG="stable"
+BASE_IMAGE_NAME="silverblue"
+FEDORA_MAJOR_VERSION="44"
 
 IMAGE_PRETTY_NAME="Evergreen"
 IMAGE_LIKE="fedora"
@@ -31,7 +34,7 @@ cat >$IMAGE_INFO <<EOF
   "image-flavor": "$image_flavor",
   "image-vendor": "$IMAGE_VENDOR",
   "image-ref": "$IMAGE_REF",
-  "image-tag":"$UBLUE_IMAGE_TAG",
+  "image-tag":"$IMAGE_TAG",
   "base-image-name": "$BASE_IMAGE_NAME",
   "fedora-version": "$FEDORA_MAJOR_VERSION"
 }
