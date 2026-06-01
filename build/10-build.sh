@@ -46,7 +46,7 @@ echo "::endgroup::"
 echo "::group:: Install Packages"
 
 # Install packages using dnf5
-# Example: dnf5 install -y tmux
+dnf5 install -y glow # Terminal-based Markdown reader, used by Bluefin motd
 
 # Example using COPR with isolated pattern:
 # copr_install_isolated "ublue-os/staging" package-name
