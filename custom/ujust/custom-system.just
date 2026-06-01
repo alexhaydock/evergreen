@@ -5,30 +5,6 @@
 ## Example system configuration commands
 ## These are simplified examples adapted from Bluefin
 
-# Run a system benchmark (requires stress-ng from Homebrew)
-[group('System')]
-benchmark:
-    #!/usr/bin/env bash
-    source /usr/lib/ujust/ujust.sh
-    if ! type -P "stress-ng" &>/dev/null ; then
-        echo "stress-ng is not installed."
-        if command -v brew &>/dev/null; then
-            if gum confirm "Install stress-ng via Homebrew?" ; then
-                brew install stress-ng
-                brew link stress-ng
-            else
-                exit 0
-            fi
-        else
-            echo "Please install stress-ng to run benchmarks."
-            exit 1
-        fi
-    fi
-    echo 'Running a 1 minute benchmark...'
-    pushd $(mktemp -d) > /dev/null
-    stress-ng --matrix 0 -t 1m --times
-    popd > /dev/null
-
 # Configure docker and libvirt groups for development
 [group('System')]
 configure-dev-groups:

@@ -85,7 +85,7 @@ All changes should be made via pull requests:
 
 Switch to your image:
 ```bash
-sudo bootc switch ghcr.io/your-username/your-repo-name:stable
+sudo bootc switch ghcr.io/alexhaydock/evergreen:stable
 sudo systemctl reboot
 ```
 
@@ -314,7 +314,6 @@ This template provides security features for production use:
 - Build provenance tracking
 
 These security features are disabled by default to allow immediate testing. When you're ready for production, see the "Love Your Image? Let's Go to Production" section above to enable them.
-
 
 ## Troubleshooting
 
