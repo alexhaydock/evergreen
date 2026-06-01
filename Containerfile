@@ -44,34 +44,7 @@ COPY --from=ghcr.io/projectbluefin/common:latest@sha256:b8fe93b16674a547b4cf3849
 # Base Image - GNOME included
 FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:f8d5fd28aa7bb0ed9e17e98e4f9fb174b6961a2dc4a3113b78c5dff4af5bdf6f
 
-## Alternative base images, no desktop included (uncomment to use):
-# FROM ghcr.io/ublue-os/base-main:latest    
-# FROM quay.io/centos-bootc/centos-bootc:stream10
-
-## Alternative GNOME OS base image (uncomment to use):
-# FROM quay.io/gnome_infrastructure/gnome-build-meta:gnomeos-nightly
-
-### /opt
-## Some bootable images, like Fedora, have /opt symlinked to /var/opt, in order to
-## make it mutable/writable for users. However, some packages write files to this directory,
-## thus its contents might be wiped out when bootc deploys an image, making it troublesome for
-## some packages. Eg, google-chrome, docker-desktop.
-##
-## Uncomment the following line if one desires to make /opt immutable and be able to be used
-## by the package manager.
-
-# RUN rm /opt && mkdir /opt
-
-### MODIFICATIONS
-## Make modifications desired in your image and install packages by modifying the build scripts.
-## The following RUN directive mounts the ctx stage which includes:
-##   - Local build scripts from /build
-##   - Local custom files from /custom
-##   - Files from @projectbluefin/common at /oci/common
-##   - Files from @projectbluefin/branding at /oci/branding
-##   - Files from @ublue-os/artwork at /oci/artwork
-## Scripts are run in numerical order (10-build.sh, 20-example.sh, etc.)
-
+# Build stage
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \

@@ -28,12 +28,18 @@ echo "::endgroup::"
 
 echo "::group:: Copy Custom Files"
 
-# Consolidate Just Files
+# Consolidate custom Justfiles
 find /ctx/custom/ujust -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just
 
 # Copy Flatpak preinstall files
 mkdir -p /etc/flatpak/preinstall.d/
 cp /ctx/custom/flatpaks/*.preinstall /etc/flatpak/preinstall.d/
+
+# Copy Bluefin common files
+# See: https://github.com/projectbluefin/common/tree/main
+# TODO: Start migrating these into this repo
+ls -lah /ctx/oci/
+cp -fv /ctx/oci/common /
 
 echo "::endgroup::"
 
