@@ -26,7 +26,12 @@ jobs:
         uses: renovatebot/github-action@0984fb80fc633b17e57f3e8b6c007fe0dc3e0d62 # v40.3.6
         with:
           configurationFile: .github/renovate.json5
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Generated as a narrowly-scoped PAT with r/w access to:
+          #   - Issues
+          #   - Pull Requests
+          #   - Workflows
+          # See: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
+          token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           LOG_LEVEL: 'debug'
