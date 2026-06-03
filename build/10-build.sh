@@ -55,9 +55,13 @@ echo "::endgroup::"
 
 echo "::group:: System Configuration"
 
-# Enable/disable systemd services
+# Services (Fedora Native)
 systemctl enable podman.socket
-# Example: systemctl mask unwanted-service
+
+# Services (Bluefin Custom)
+# See: https://github.com/ublue-os/aurorafin-shared/tree/main/system_files/shared/usr/lib/systemd
+# See: https://github.com/projectbluefin/common/tree/main/system_files/bluefin/usr/lib/systemd
+systemctl enable flatpak-preinstall.service
 
 echo "::endgroup::"
 
