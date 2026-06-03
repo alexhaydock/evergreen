@@ -32,25 +32,27 @@
 # See: https://docs.projectbluefin.io/contributing/ for architecture diagram
 ###############################################################################
 
-# Context stage - combine local and imported OCI container resources
+#################
+# Context Stage # - Combine local resources from this repo and Bluefin upstreams from their published OCI images
+#################
 FROM scratch AS ctx
 
 COPY build /build
 COPY custom /custom
+
 # Copy from OCI containers to distinct subdirectories to avoid conflicts
-# Note: Renovate can automatically update these :latest tags to SHA-256 digests for reproducibility
 COPY --from=ghcr.io/projectbluefin/common:latest@sha256:a1d797b38fb0ec42b9f572cd69764a2995ba26207b456afecdc58ea93478bf61 /system_files /oci/common
 
-# Base Image - GNOME included
+###############
+# Build Stage # - Use Silverblue base image and run buildscripts on top of it
+###############
 FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:a3a31f178ba8f53c0d0de43bf1851a35a9ac7083b22377fb9c530c9b16efb0e8
 
-# Build stage
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build/10-build.sh
-    
-### LINTING
-## Verify final image and contents are correct.
+
+# Verify final image and contents are correct
 RUN bootc container lint
