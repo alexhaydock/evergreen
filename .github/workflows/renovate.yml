@@ -27,6 +27,9 @@ jobs:
         with:
           configurationFile: .github/renovate.json5
           # Generated as a narrowly-scoped PAT with r/w access to:
+          #   - Actions (Read-only)
+          #   - Commit statuses (Read-only)
+          #   - Contents
           #   - Issues
           #   - Pull Requests
           #   - Workflows
