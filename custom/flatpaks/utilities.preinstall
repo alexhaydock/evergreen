@@ -1,0 +1,32 @@
+# Utilities
+
+# These will be installed on first boot
+# Format: INI file with [Flatpak Preinstall NAME] groups
+# See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
+
+[Flatpak Preinstall com.github.tchx84.Flatseal]
+Branch=stable
+
+[Flatpak Preinstall com.mattjakeman.ExtensionManager]
+Branch=stable
+
+[Flatpak Preinstall io.github.flattool.Warehouse]
+Branch=stable
+
+[Flatpak Preinstall io.github.flattool.Ignition]
+Branch=stable
+
+[Flatpak Preinstall io.missioncenter.MissionCenter]
+Branch=stable
+
+[Flatpak Preinstall io.gitlab.adhami3310.Impression]
+Branch=stable
+
+[Flatpak Preinstall com.ranfdev.DistroShelf]
+Branch=stable
+
+[Flatpak Preinstall io.github.kolunmi.Bazaar]
+Branch=stable
+
+[Flatpak Preinstall page.tesk.Refine]
+Branch=stable
