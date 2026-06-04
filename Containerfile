@@ -41,7 +41,7 @@ COPY build /build
 COPY custom /custom
 
 # Copy from OCI containers to distinct subdirectories to avoid conflicts
-COPY --from=ghcr.io/projectbluefin/common:latest@sha256:a1d797b38fb0ec42b9f572cd69764a2995ba26207b456afecdc58ea93478bf61 /system_files /oci/common
+COPY --from=ghcr.io/projectbluefin/common:latest@sha256:7ee7559916e2dcbd7f520afd463181605709b1cdd3bc728e212fd47f3e860feb /system_files /oci/common
 
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
