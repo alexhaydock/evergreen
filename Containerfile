@@ -40,6 +40,9 @@ FROM scratch AS ctx
 COPY scripts /scripts
 COPY rootfs /rootfs
 
+# Ensure all scripts are executable
+RUN chmod -R +x /scripts/
+
 # Copy from OCI containers to distinct subdirectories to avoid conflicts
 COPY --from=ghcr.io/projectbluefin/common:latest@sha256:7ee7559916e2dcbd7f520afd463181605709b1cdd3bc728e212fd47f3e860feb /system_files /oci/common
 
