@@ -27,7 +27,7 @@ echo "::endgroup::"
 
 echo "::group:: Copy Custom Files"
 
-cp -rv /ctx/root/. /
+cp -rv /ctx/rootfs/. /
 
 echo "::endgroup::"
 
