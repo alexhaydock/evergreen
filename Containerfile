@@ -46,7 +46,7 @@ COPY --from=ghcr.io/projectbluefin/common:latest@sha256:7ee7559916e2dcbd7f520afd
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
 ###############
-FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:3c8d52f3bb3fe5187e08ea9524b17ff95067e68564d1ca0352152618777326ec
+FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:0bade6ac86765147b13ecbde36cee58122b8d7773d9dfeaf4e52ab2ac4789ae7
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
