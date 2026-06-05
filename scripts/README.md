@@ -60,7 +60,7 @@ To temporarily disable a script without deleting it:
 The Containerfile runs scripts like this:
 
 ```dockerfile
-RUN /ctx/build/10-build.sh
+RUN /ctx/scripts/10-build.sh
 ```
 
 If you want to run multiple scripts, you can:
