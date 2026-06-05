@@ -30,3 +30,9 @@ Branch=stable
 
 [Flatpak Preinstall com.transmissionbt.Transmission]
 Branch=stable
+
+[Flatpak Preinstall org.jdownloader.JDownloader]
+Branch=stable
+
+[Flatpak Preinstall org.raspberrypi.rpi-imager]
+Branch=stable
