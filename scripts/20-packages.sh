@@ -13,8 +13,40 @@ copr_install_isolated "ublue-os/packages" "uupd"
 
 # Define package install set
 FEDORA_PACKAGES=(
+    age
+    ansible
+    ansible-lint
+    audit
+    bat # Like cat, but cooler
+    beets
+    below
+    bind-utils # provides `dig`
+    bpftop
+    conntrack-tools
+    diffoscope # Compare files to find out where they differ for Reproducible Build work
     fastfetch
-    glow
+    ghostscript # compress PDFs with: `gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -dNOPAUSE -dBATCH -sOutputFile=output.pdf input.pdf`
+    gitsign # Chainguard's git signing program: https://docs.sigstore.dev/cosign/signing/gitsign/
+    gnumake
+    go
+    hadolint
+    iperf3
+    links2
+    nmap
+    nyancat
+    opentofu
+    optipng
+    pre-commit
+    quickemu # Also pulls in QEMU
+    rpmextract
+    socat
+    sops # Secrets management: https://getsops.io/
+    sshfs
+    vhs # For creating shell recordings for documentation
+    waypipe # Wayland session forwarding
+    wireshark
+    yamllint
+    yt-dlp
 )
 
 # Install all Fedora packages (bulk - safe from COPR injection)
@@ -24,6 +56,7 @@ dnf -y install "${FEDORA_PACKAGES[@]}"
 # Packages to exclude - common to all versions
 EXCLUDED_PACKAGES=(
     cosign
+    cups
     fedora-bookmarks
     fedora-chromium-config
     fedora-chromium-config-gnome

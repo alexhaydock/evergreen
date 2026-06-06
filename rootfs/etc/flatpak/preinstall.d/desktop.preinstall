@@ -4,12 +4,6 @@
 # Format: INI file with [Flatpak Preinstall NAME] groups
 # See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
 
-[Flatpak Preinstall io.gitlab.librewolf-community]
-Branch=stable
-
-[Flatpak Preinstall org.torproject.torbrowser-launcher]
-Branch=stable
-
 [Flatpak Preinstall org.signal.Signal]
 Branch=stable
 

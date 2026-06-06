@@ -26,7 +26,7 @@ color-scheme='prefer-dark'
 clock-format='12h'
 clock-show-weekday=true
 show-battery-percentage=true
-text-scaling-factor=1.25
+text-scaling-factor=1
 
 [org/gnome/desktop/notifications]
 show-in-lock-screen=false
