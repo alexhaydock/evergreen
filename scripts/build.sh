@@ -12,22 +12,11 @@ set -eoux pipefail
 # Enable nullglob for all glob operations to prevent failures on empty matches
 shopt -s nullglob
 
-echo "::group:: Copy Bluefin Config from Common"
-
-# See: https://github.com/ublue-os/bluefin/blob/0fa8f9031075742c035d634d1a9c49d59ecfd21b/build_files/shared/build.sh#L19
-# TODO: Consider migrating these files into this repo
-rsync -rvK /ctx/system_files/shared/ /
-
-echo "::endgroup::"
-
-echo "::group:: Copy Custom Files"
-
-cp -rv /ctx/rootfs/. /
-
-echo "::endgroup::"
-
 # Generate image-info.json for the MOTD to consume
 /ctx/scripts/00-image-info.sh
+
+# Copy configs into container
+/ctx/scripts/10-config.sh
 
 # Install packages
 /ctx/scripts/20-packages.sh
