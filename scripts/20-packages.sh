@@ -12,7 +12,7 @@ source /ctx/scripts/copr-helpers.sh
 copr_install_isolated "ublue-os/packages" "uupd"
 
 # Bring in NetworkManager dev branch for access to CLAT
-copr_install_isolated "networkmanager/NetworkManager" "main"
+copr_install_isolated "networkmanager/NetworkManager-main" "NetworkManager"
 dnf -y install NetworkManager # Make sure to install it to get the latest
 
 # Define package install set
