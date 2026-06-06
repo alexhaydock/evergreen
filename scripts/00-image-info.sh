@@ -10,6 +10,10 @@ IMAGE_TAG="stable"
 BASE_IMAGE_NAME="silverblue"
 FEDORA_MAJOR_VERSION="44"
 
+FEDORA_MAJOR_VERSION="$(grep ^VERSION_ID /etc/os-release | cut -d'=' -f2)"
+DATESTRING="$(date +%Y%m%d)"
+VERSION="${FEDORA_MAJOR_VERSION}.${DATESTRING}"
+
 IMAGE_PRETTY_NAME="Evergreen"
 IMAGE_LIKE="fedora"
 HOME_URL="https://github.com/alexhaydock/evergreen"
@@ -17,7 +21,6 @@ DOCUMENTATION_URL="https://github.com/alexhaydock/evergreen"
 SUPPORT_URL="https://github.com/alexhaydock/evergreen/issues"
 BUG_SUPPORT_URL="https://github.com/alexhaydock/evergreen/issues"
 CODE_NAME="Scruff"
-VERSION="${VERSION:-00.00000000}"
 
 IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 IMAGE_REF="ostree-image-signed:docker://ghcr.io/$IMAGE_VENDOR/$IMAGE_NAME"
