@@ -36,8 +36,8 @@
 # Import Stage # - Import the common image from Bluefin/Universal Blue upstream
 ################
 FROM ghcr.io/projectbluefin/common:latest@sha256:5609e24c5b774246e8df7498d3ce2a6183152cee2828c8f71970b3c541a0972f AS common
-FROM ghcr.io/getsops/sops:v3.13.1-alpine as sops
-FROM ghcr.io/sigstore/cosign/cosign:v3.0.6 as cosign
+FROM ghcr.io/getsops/sops:v3.13.1-alpine@sha256:032061a34e728c635b0d1830f9d26b844022e1284efe7707736e7ef52b49ba38 as sops
+FROM ghcr.io/sigstore/cosign/cosign:v3.0.6@sha256:de9c65609e6bde17e6b48de485ee788407c9502fa08b8f4459f595b21f56cd00 as cosign
 
 #################
 # Context Stage # - Combine local resources from this repo and Bluefin upstreams from their published OCI images
