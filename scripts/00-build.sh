@@ -9,10 +9,6 @@ set -eoux pipefail
 # It uses set -eoux pipefail for strict error handling and debugging.
 ###############################################################################
 
-# Source helper functions
-# shellcheck source=/dev/null
-source /ctx/scripts/copr-helpers.sh
-
 # Enable nullglob for all glob operations to prevent failures on empty matches
 shopt -s nullglob
 
@@ -31,7 +27,7 @@ cp -rv /ctx/rootfs/. /
 echo "::endgroup::"
 
 # Generate image-info.json for the MOTD to consume
-/ctx/scripts/00-image-info.sh
+/ctx/scripts/10-image-info.sh
 
 # Install packages
 /ctx/scripts/20-packages.sh

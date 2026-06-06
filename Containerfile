@@ -59,7 +59,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/scripts/10-build.sh
+    /ctx/scripts/00-build.sh
 
 # Verify final image and contents are correct
 RUN bootc container lint
