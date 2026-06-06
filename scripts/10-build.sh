@@ -35,8 +35,8 @@ echo "::group:: Install Packages"
 # Install packages using dnf5
 dnf5 install -y glow # Terminal-based Markdown reader, used by Bluefin MOTD
 
-# Example using COPR with isolated pattern:
-# copr_install_isolated "ublue-os/staging" package-name
+# Install Universal Blue update service
+copr_install_isolated "ublue-os/packages" "uupd"
 
 echo "::endgroup::"
 
