@@ -4,6 +4,10 @@ echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
 
+# Source helper functions
+# shellcheck source=/dev/null
+source /ctx/scripts/copr-helpers.sh
+
 # Install Universal Blue update service
 copr_install_isolated "ublue-os/packages" "uupd"
 
