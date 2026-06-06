@@ -51,7 +51,6 @@ systemctl enable podman.socket
 systemctl --global enable podman-auto-update.timer
 systemctl --global enable ublue-user-setup.service
 systemctl enable dconf-update.service
-systemctl enable flatpak-nuke-fedora.service
 systemctl enable flatpak-preinstall.service
 systemctl enable input-remapper.service
 systemctl enable ublue-system-setup.service
