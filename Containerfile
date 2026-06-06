@@ -36,6 +36,8 @@
 # Import Stage # - Import the common image from Bluefin/Universal Blue upstream
 ################
 FROM ghcr.io/projectbluefin/common:latest@sha256:2d45f52fbbcda5baebc9682357920878232d0b135871711fa8bc9560c1bdd47e AS common
+FROM ghcr.io/getsops/sops:v3.13.1-alpine as sops
+FROM ghcr.io/sigstore/cosign/cosign:v3.0.6 as cosign
 
 #################
 # Context Stage # - Combine local resources from this repo and Bluefin upstreams from their published OCI images
@@ -49,6 +51,12 @@ COPY rootfs /rootfs
 # See: https://github.com/ublue-os/bluefin/blob/0fa8f9031075742c035d634d1a9c49d59ecfd21b/Containerfile#L16-L17
 COPY --from=common /system_files/shared /system_files/shared
 COPY --from=common /system_files/bluefin /system_files/shared
+
+# Copy sops binary into container
+COPY --from=sops /usr/local/bin/sops /system_files/shared/usr/local/bin/sops
+
+# Copy cosign binary into container
+COPY --from=cosign /ko-app/cosign /system_files/shared/usr/local/bin/cosign
 
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
