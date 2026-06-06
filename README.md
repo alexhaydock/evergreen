@@ -8,7 +8,7 @@ Based heavily on the [finpilot](https://github.com/projectbluefin/finpilot) gett
 * Dependency updates are handled by self-hosted [Renovate](./.github/workflows/renovate.yml).
   * See the `renovate.yml` for notes on the PAT token requirements to allow Renovate sufficient repo access to open Issues and PRs etc.
   * To auto-merge Renovate PRs to update digests etc, go to the repository `Settings > General` and enable `Allow auto-merge`. Auto-merging is enabled in the `renovate.json5` config file.
-  * Auto-merging in GitHub also requires branch protection rules set on the target branch (`Settings > Branches > Add branch ruleset`). The ruleset can be weak, but it needs to exist and there needs to be at least one rule, for example "Require a pull request before merging".
+  * Auto-merging in GitHub also requires branch protection rules set on the target branch (`Settings > Branches > Add branch ruleset`). The ruleset can be weak, but it needs to exist and there needs to be at least one rule, for example "Require status checks to pass" with a single "Build and push image" check.
   * Auto-merges will use squash commits so the "Allowed merge methods" must contain Squash.
 * Builds are not based on top of Bluefin. They use Silverblue as a base, but do selectively pull in some of the Bluefin/uBlue tweaks/configs/tooling.
 * Image signing uses Cosign.
