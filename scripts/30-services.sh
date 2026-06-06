@@ -24,6 +24,9 @@ systemctl enable ublue-system-setup.service
 # Enable fwupd
 systemctl enable fwupd.service
 
+# Enable pcscd service for use with age-plugin-yubikey
+systemctl enable pcscd.service
+
 # Disable the old rpm-ostreed-automatic.timer
 systemctl disable rpm-ostreed-automatic.timer
 

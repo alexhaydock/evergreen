@@ -32,6 +32,7 @@ FEDORA_PACKAGES=(
     nyancat
     opentofu
     optipng
+    pcsc-lite # Provides `pcscd.service` for use with `age-plugin-yubikey`
     pre-commit
     quickemu # Also pulls in QEMU
     rpminspect
