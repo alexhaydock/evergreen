@@ -41,7 +41,7 @@ COPY scripts /scripts
 COPY rootfs /rootfs
 
 # Copy from OCI containers to distinct subdirectories to avoid conflicts
-COPY --from=ghcr.io/projectbluefin/common:latest@sha256:7ee7559916e2dcbd7f520afd463181605709b1cdd3bc728e212fd47f3e860feb /system_files /oci/common
+COPY --from=ghcr.io/projectbluefin/common:latest@sha256:2d45f52fbbcda5baebc9682357920878232d0b135871711fa8bc9560c1bdd47e /system_files /oci/common
 
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
