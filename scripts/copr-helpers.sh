@@ -8,7 +8,7 @@ set -euo pipefail
 # COPR repositories in a safe, isolated manner.
 ###############################################################################
 
-copr_install_isolated() {
+copr_import(){
     local copr_name="$1"
     shift
     local packages=("$@")
@@ -24,7 +24,23 @@ copr_install_isolated() {
 
     dnf5 -y copr enable "$copr_name"
     dnf5 -y copr disable "$copr_name"
+}
+
+copr_install_isolated() {
+    copr_import
+
     dnf5 -y install --enablerepo="$repo_id" "${packages[@]}"
 
     echo "Installed ${packages[*]} from $copr_name"
+}
+
+# Where we're replacing a package that already exists on the system
+# (useful where we want to use a COPR that ships a dev version of
+# a system package and we need to force dnf to take the new one)
+copr_upgrade_isolated() {
+    copr_import
+
+    dnf5 -y upgraded --enablerepo="$repo_id" "${packages[@]}"
+
+    echo "Upgraded ${packages[*]} from $copr_name"
 }
