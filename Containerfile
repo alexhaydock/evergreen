@@ -32,6 +32,11 @@
 # See: https://docs.projectbluefin.io/contributing/ for architecture diagram
 ###############################################################################
 
+################
+# Import Stage # - Import the common image from Bluefin/Universal Blue upstream
+################
+FROM ghcr.io/projectbluefin/common:latest@sha256:2d45f52fbbcda5baebc9682357920878232d0b135871711fa8bc9560c1bdd47e AS common
+
 #################
 # Context Stage # - Combine local resources from this repo and Bluefin upstreams from their published OCI images
 #################
@@ -40,8 +45,10 @@ FROM scratch AS ctx
 COPY scripts /scripts
 COPY rootfs /rootfs
 
-# Copy from OCI containers to distinct subdirectories to avoid conflicts
-COPY --from=ghcr.io/projectbluefin/common:latest@sha256:2d45f52fbbcda5baebc9682357920878232d0b135871711fa8bc9560c1bdd47e /system_files /oci/common
+# Copy from common container as Bluefin itself does upstream
+# See: https://github.com/ublue-os/bluefin/blob/0fa8f9031075742c035d634d1a9c49d59ecfd21b/Containerfile#L16-L17
+COPY --from=common /system_files/shared /system_files/shared
+COPY --from=common /system_files/bluefin /system_files/shared
 
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it

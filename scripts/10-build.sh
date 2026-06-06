@@ -18,10 +18,9 @@ shopt -s nullglob
 
 echo "::group:: Copy Bluefin Config from Common"
 
-# See: https://github.com/projectbluefin/common/tree/main
-# TODO: Start migrating these files into this repo
-cp -rv /ctx/oci/common/shared/. /
-cp -rv /ctx/oci/common/bluefin/. /
+# See: https://github.com/ublue-os/bluefin/blob/0fa8f9031075742c035d634d1a9c49d59ecfd21b/build_files/shared/build.sh#L19
+# TODO: Consider migrating these files into this repo
+rsync -rvK /ctx/system_files/shared/ /
 
 echo "::endgroup::"
 
@@ -49,7 +48,11 @@ systemctl enable podman.socket
 # Services (Bluefin Custom)
 # See: https://github.com/ublue-os/aurorafin-shared/tree/main/system_files/shared/usr/lib/systemd
 # See: https://github.com/projectbluefin/common/tree/main/system_files/bluefin/usr/lib/systemd
+systemctl enable dconf-update.service
 systemctl enable flatpak-preinstall.service
+systemctl enable rechunker-group-fix.service
+systemctl enable ublue-system-setup.service
+systemctl enable ublue-user-setup.service
 
 # Generate image-info.json for the MOTD to consume
 /ctx/scripts/00-image-info.sh
