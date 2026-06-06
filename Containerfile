@@ -35,7 +35,7 @@
 ################
 # Import Stage # - Import the common image from Bluefin/Universal Blue upstream
 ################
-FROM ghcr.io/projectbluefin/common:latest@sha256:2d45f52fbbcda5baebc9682357920878232d0b135871711fa8bc9560c1bdd47e AS common
+FROM ghcr.io/projectbluefin/common:latest@sha256:5609e24c5b774246e8df7498d3ce2a6183152cee2828c8f71970b3c541a0972f AS common
 FROM ghcr.io/getsops/sops:v3.13.1-alpine as sops
 FROM ghcr.io/sigstore/cosign/cosign:v3.0.6 as cosign
 
