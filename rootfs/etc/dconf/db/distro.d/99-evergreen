@@ -7,16 +7,16 @@
 [org/gnome/desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///run/current-system/sw/share/backgrounds/gnome/progress-l.jxl'
-picture-uri-dark='file:///run/current-system/sw/share/backgrounds/gnome/progress-d.jxl'
+picture-uri='file:///usr/share/backgrounds/gnome/progress-l.jxl'
+picture-uri-dark='file:///usr/share/backgrounds/gnome/progress-d.jxl'
 primary-color='#967864'
 secondary-color='#000000'
 
 [org/gnome/desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///run/current-system/sw/share/backgrounds/gnome/progress-l.jxl'
-picture-uri-dark='file:///run/current-system/sw/share/backgrounds/gnome/progress-d.jxl'
+picture-uri='file:///usr/share/backgrounds/gnome/progress-l.jxl'
+picture-uri-dark='file:///usr/share/backgrounds/gnome/progress-d.jxl'
 primary-color='#967864'
 secondary-color='#000000'
 

@@ -4,6 +4,9 @@ echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
 
+# Make sure profile files are executable
+chmod +x /etc/profile.d/*.sh
+
 # Hide unwanted Desktop Files. Hidden removes mime associations
 for file in htop nvtop; do
     if [[ -f "/usr/share/applications/$file.desktop" ]]; then
@@ -39,6 +42,15 @@ done
 # Disable fedora-coreos-pool if it exists
 if [ -f /etc/yum.repos.d/fedora-coreos-pool.repo ]; then
     sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-coreos-pool.repo
+fi
+
+# Remove the deprecated old motd method that's still shipped
+# upstream for some reason
+if [ -f /etc/profile.d/ublue-motd.sh ]; then
+    rm -v /etc/profile.d/ublue-motd.sh
+fi
+if [ -f /etc/profile.d/user-motd.sh ]; then
+    rm -v /etc/profile.d/user-motd.sh
 fi
 
 echo "::endgroup::"
