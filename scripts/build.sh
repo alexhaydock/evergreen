@@ -27,7 +27,7 @@ cp -rv /ctx/rootfs/. /
 echo "::endgroup::"
 
 # Generate image-info.json for the MOTD to consume
-/ctx/scripts/10-image-info.sh
+/ctx/scripts/00-image-info.sh
 
 # Install packages
 /ctx/scripts/20-packages.sh
