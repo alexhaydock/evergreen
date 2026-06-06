@@ -2,7 +2,7 @@
 
 A custom Bluefin-based Atomic Fedora build for my own workstation use.
 
-Based heavily on the [finpilot](https://github.com/projectbluefin/finpilot) getting started kit by the Bluefin / Universal Blue team.
+Based on the [finpilot](https://github.com/projectbluefin/finpilot) getting started kit by the Bluefin / Universal Blue team, with heavy downstream modifications to fit my own purposes.
 
 ## Notes
 * Dependency updates are handled by self-hosted [Renovate](./.github/workflows/renovate.yml).
