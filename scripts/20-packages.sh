@@ -19,7 +19,6 @@ FEDORA_PACKAGES=(
     bat # Like cat, but cooler
     beets
     below
-    bind-utils # provides `dig`
     bpftop
     conntrack-tools
     fastfetch
@@ -37,7 +36,6 @@ FEDORA_PACKAGES=(
     quickemu # Also pulls in QEMU
     rpminspect
     socat
-    sops # Secrets management: https://getsops.io/
     sshfs
     vhs # For creating shell recordings for documentation
     waypipe # Wayland session forwarding
