@@ -11,6 +11,10 @@ source /ctx/scripts/copr-helpers.sh
 # Install Universal Blue update service
 copr_install_isolated "ublue-os/packages" "uupd"
 
+# Bring in NetworkManager dev branch for access to CLAT
+copr_install_isolated "networkmanager/NetworkManager" "main"
+dnf -y install NetworkManager # Make sure to install it to get the latest
+
 # Define package install set
 FEDORA_PACKAGES=(
     age
