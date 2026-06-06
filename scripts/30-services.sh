@@ -21,6 +21,9 @@ systemctl enable uupd.timer
 systemctl --global enable ublue-user-setup.service
 systemctl enable ublue-system-setup.service
 
+# Enable fwupd
+systemctl enable fwupd.service
+
 # Disable the old rpm-ostreed-automatic.timer
 systemctl disable rpm-ostreed-automatic.timer
 

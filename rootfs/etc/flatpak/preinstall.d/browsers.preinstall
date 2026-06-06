@@ -1,0 +1,17 @@
+# Browsers
+
+# These will be installed on first boot
+# Format: INI file with [Flatpak Preinstall NAME] groups
+# See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
+
+[Flatpak Preinstall io.gitlab.librewolf-community]
+Branch=stable
+
+[Flatpak Preinstall org.torproject.torbrowser-launcher]
+Branch=stable
+
+[Flatpak Preinstall org.chromium.Chromium]
+Branch=stable
+
+[Flatpak Preinstall org.gnome.Epiphany]
+Branch=stable

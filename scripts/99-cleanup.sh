@@ -53,4 +53,18 @@ if [ -f /etc/profile.d/user-motd.sh ]; then
     rm -v /etc/profile.d/user-motd.sh
 fi
 
+# Remove any remnants of Homebrew config
+if [ -d /usr/share/ublue-os/homebrew ]; then
+    rm -rv /usr/share/ublue-os/homebrew
+fi
+if [ -d /var/cache/homebrew ]; then
+    rm -rv /var/cache/homebrew
+fi
+if [ -d /var/lib/homebrew ]; then
+    rm -rv /var/lib/homebrew
+fi
+if [ -d /var/home/linuxbrew ]; then
+    rm -rv /var/home/linuxbrew
+fi
+
 echo "::endgroup::"

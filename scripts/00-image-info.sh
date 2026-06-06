@@ -8,7 +8,6 @@ IMAGE_NAME="evergreen"
 IMAGE_VENDOR="alexhaydock"
 IMAGE_TAG="stable"
 BASE_IMAGE_NAME="silverblue"
-FEDORA_MAJOR_VERSION="44"
 
 FEDORA_MAJOR_VERSION="$(grep ^VERSION_ID /etc/os-release | cut -d'=' -f2)"
 DATESTRING="$(date +%Y%m%d)"
