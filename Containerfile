@@ -61,7 +61,7 @@ COPY --from=cosign /ko-app/cosign /system_files/shared/usr/local/bin/cosign
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
 ###############
-FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:8e8d7641b5b9d7daa0fa679cbb90f5c70411fb54ba99125188627fa678942266
+FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:83fb145e299f74f25781fa1f3d57c1b52428d6943c153f0c679d9a57ead41032
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
