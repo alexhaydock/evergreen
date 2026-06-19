@@ -1,0 +1,2 @@
+enable podman-auto-update.timer
+enable ublue-user-setup.service

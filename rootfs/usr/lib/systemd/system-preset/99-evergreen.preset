@@ -1,0 +1,19 @@
+# Podman service
+enable podman.socket
+
+# Evergreen "declarative-ish" services
+enable dconf-update.service
+enable flatpak-preinstall.service
+
+# Universal Blue upstream services
+enable uupd.timer
+enable ublue-system-setup.service
+
+# Firmware updater
+enable fwupd.service
+
+# Smartcard daemon for age-plugin-yubikey
+enable pcscd.service
+
+# Disable the old rpm-ostree timer if it exists
+disable rpm-ostreed-automatic.timer

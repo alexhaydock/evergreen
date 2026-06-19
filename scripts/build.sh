@@ -21,9 +21,6 @@ shopt -s nullglob
 # Install packages
 /ctx/scripts/20-packages.sh
 
-# Manage services
-/ctx/scripts/30-services.sh
-
 # Cleanup
 /ctx/scripts/99-cleanup.sh
 

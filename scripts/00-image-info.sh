@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+echo "::group:: ===$(basename "$0")==="
+
+set -ouex pipefail
 
 ###############################################################################
 # Image Info Generation
@@ -64,17 +66,15 @@ echo "  image-vendor: ${IMAGE_VENDOR}"
 ###############################################################################
 # Customize /usr/lib/os-release
 ###############################################################################
-# Only modify if the file exists and VARIANT_ID is not already set
-if [[ -f "${OS_RELEASE}" ]] && ! grep -q "^VARIANT_ID=" "${OS_RELEASE}"; then
-  # Read existing values
-  if [[ -n "${VERSION:-}" ]]; then
-    OS_VERSION="${VERSION}"
-  else
-    OS_VERSION="${UBLUE_IMAGE_TAG}"
-  fi
+# Read existing values
+if [[ -n "${VERSION:-}" ]]; then
+  OS_VERSION="${VERSION}"
+else
+  OS_VERSION="${UBLUE_IMAGE_TAG}"
+fi
 
-  # Append our identity
-  cat >> "${OS_RELEASE}" << EOF
+# Append our identity
+cat >> "${OS_RELEASE}" << EOF
 
 # ${IMAGE_NAME} image identity
 VARIANT_ID="${IMAGE_FLAVOR}"
@@ -89,5 +89,6 @@ SUPPORT_URL="${SUPPORT_URL}"
 BUG_REPORT_URL="${BUG_REPORT_URL}"
 EOF
 
-  echo "Customized ${OS_RELEASE}"
-fi
+echo "Customized ${OS_RELEASE}"
+
+echo "::endgroup::"
