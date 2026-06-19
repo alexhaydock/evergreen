@@ -38,6 +38,7 @@
 ARG BASE_IMAGE_NAME="silverblue"
 ARG FEDORA_MAJOR_VERSION="44"
 ARG IMAGE_NAME="evergreen"
+ARG IMAGE_PRETTY_NAME="Evergreen"
 ARG IMAGE_VENDOR="alexhaydock"
 ARG UBLUE_IMAGE_TAG="stable"
 
@@ -73,11 +74,12 @@ COPY --from=cosign /ko-app/cosign /system_files/shared/usr/local/bin/cosign
 FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:a56a83eae6f7d99bd6dc5835595e9754b0103d993936accb62750091737c20cd
 
 # Re-declare ARGs for this stage (Docker requires ARG re-declaration per stage)
-ARG IMAGE_NAME
-ARG IMAGE_VENDOR
-ARG UBLUE_IMAGE_TAG
 ARG BASE_IMAGE_NAME
 ARG FEDORA_MAJOR_VERSION
+ARG IMAGE_NAME
+ARG IMAGE_PRETTY_NAME
+ARG IMAGE_VENDOR
+ARG UBLUE_IMAGE_TAG
 
 # Per-build metadata - redeclare separately so they don't bust the base cache
 ARG SHA_HEAD_SHORT=""

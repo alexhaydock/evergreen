@@ -33,10 +33,10 @@ This key is also used by `podman`/`bootc` to validate image updates to the insta
 Test changes before pushing:
 
 ```bash
-just build         # Build container image
-just build-iso     # Build installation ISO
-just build-qcow2   # Build VM disk image
-just run-vm-qcow2  # Test in browser-based VM
+just build                    # Build container image
+just build && just build-iso  # Build installation ISO
+just build-qcow2              # Build VM disk image
+just run-vm-qcow2             # Test in browser-based VM
 ```
 
 ## Fresh repo setup
