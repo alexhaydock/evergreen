@@ -1,0 +1,232 @@
+---
+name: Build and Push Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '20 04 * * *'  # 04:20 UTC everyday
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+env:
+  IMAGE_NAME: "${{ github.event.repository.name }}"
+  IMAGE_VENDOR: "${{ github.repository_owner }}"
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
+  IMAGE_DESC: "My Customized Universal Blue Image"
+  IMAGE_KEYWORDS: "bootc,ublue,universal-blue"
+  IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/120078124?s=200&v=4"
+  BASE_IMAGE: "quay.io/fedora-ostree-desktops/silverblue"
+  FEDORA_MAJOR_VERSION: "44"
+  DEFAULT_TAG: "stable"
+  UBLUE_IMAGE_TAG: "stable"
+  REGISTRY_CACHE_WRITE: ${{ github.event_name != 'pull_request' && '1' || '0' }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and push image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+
+    steps:
+      - name: Prepare environment
+        run: |
+          echo "IMAGE_REGISTRY=${IMAGE_REGISTRY,,}" >> ${GITHUB_ENV}
+          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> ${GITHUB_ENV}
+
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Preflight
+        id: preflight
+        uses: projectbluefin/actions/bootc-build/preflight@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          registry: ghcr.io
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          image-name: ${{ env.IMAGE_NAME }}
+
+      - name: Setup runner
+        uses: projectbluefin/actions/bootc-build/setup-runner@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          storage-backend: btrfs
+          update-podman: "true"
+          install-tools: '["just"]'
+
+      - name: Install yq
+        shell: bash
+        env:
+          # renovate: datasource=github-releases depName=mikefarah/yq
+          YQ_VERSION: "v4.53.3"
+        run: |
+          sudo wget -qO /usr/local/bin/yq \
+            "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64"
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Restore DNF cache
+        id: dnf-cache-restore
+        uses: projectbluefin/actions/bootc-build/dnf-cache@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          action: restore
+          cache-name: ${{ env.IMAGE_NAME }}
+          cache-bust: ${{ hashFiles('**/Containerfile') }}
+
+      - name: Detect changes
+        id: detect-changes
+        uses: projectbluefin/actions/bootc-build/detect-changes@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          filters: |
+            image:
+              - 'Containerfile'
+              - 'build/**'
+              - 'custom/**'
+              - 'image-versions.yml'
+              - 'Justfile'
+
+      - name: Build image
+        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        id: build-image
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_VENDOR: ${{ env.IMAGE_VENDOR }}
+          DEFAULT_TAG: ${{ env.DEFAULT_TAG }}
+          UBLUE_IMAGE_TAG: ${{ env.UBLUE_IMAGE_TAG }}
+          REGISTRY_CACHE_WRITE: ${{ env.REGISTRY_CACHE_WRITE }}
+        with:
+          timeout_minutes: 120
+          max_attempts: 3
+          retry_wait_seconds: 300
+          command: |
+            sudo -E "$(command -v just)" build "${IMAGE_NAME}" "${DEFAULT_TAG}"
+
+      - name: Get version label
+        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        id: version
+        shell: bash
+        env:
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          DEFAULT_TAG: ${{ env.DEFAULT_TAG }}
+        run: |
+          VERSION_LABEL=$(sudo podman inspect "localhost/${IMAGE_NAME}:${DEFAULT_TAG}" \
+            --format '{{index .Config.Labels "org.opencontainers.image.version"}}')
+          echo "version=${VERSION_LABEL}" >> $GITHUB_OUTPUT
+          echo "Version: ${VERSION_LABEL}"
+
+      - name: Generate tags
+        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        id: generate-tags
+        uses: projectbluefin/actions/bootc-build/generate-tags@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          base-name: ${{ env.IMAGE_NAME }}
+          stream-name: ${{ env.DEFAULT_TAG }}
+          version-label: ${{ steps.version.outputs.version }}
+          event-name: ${{ github.event_name }}
+          pr-number: ${{ github.event.number }}
+
+      - name: Tag images
+        if: github.event_name != 'pull_request'
+        shell: bash
+        env:
+          ALIAS_TAGS: ${{ steps.generate-tags.outputs.tags }}
+        run: |
+          sudo -E "$(command -v just)" tag-images "${IMAGE_NAME}" \
+                          "${DEFAULT_TAG}" \
+                          "${ALIAS_TAGS}"
+
+      - name: Save DNF cache
+        if: always() && !cancelled() && github.event_name != 'pull_request'
+        uses: projectbluefin/actions/bootc-build/dnf-cache@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          action: save
+          cache-name: ${{ env.IMAGE_NAME }}
+          allow-write: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+          cache-bust: ${{ hashFiles('**/Containerfile') }}
+
+      # OPTIONAL: Rechunking (OCI-native, no rpm-ostree)
+      # Rechunking improves OTA delta performance by reorganizing layers.
+      # Uncomment the step below to enable it. Renovate will keep the action
+      # pinned and up to date automatically once it is uncommented.
+      #
+      # For optimal layer grouping (packages sorted by update cadence), also add
+      # the bootc-build/apply-pkg-intervals step before rechunking and create a
+      # .github/workflows/pkg-cadence.yml workflow. See:
+      #   https://github.com/projectbluefin/actions/tree/main/bootc-build/chunka
+      #   https://github.com/projectbluefin/actions/tree/main/bootc-build/apply-pkg-intervals
+      # - name: Rechunk image
+      #   if: github.event_name != 'pull_request'
+      #   id: rechunk-image
+      #   uses: projectbluefin/actions/bootc-build/chunka@6231015b336556d2ff0adc1d1e59514bf19dcb42 # v1
+      #   with:
+      #     source-image: localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}
+      #     max-layers: 128
+
+      - name: Login to GitHub Container Registry
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push to GHCR
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        id: push
+        uses: projectbluefin/actions/bootc-build/push-image@45dc35dd6f6fb0d6fa791352970b02934de31b50 # v1
+        with:
+          image-name: ${{ env.IMAGE_NAME }}
+          tags: ${{ steps.generate-tags.outputs.tags }}
+          default-tag: ${{ steps.generate-tags.outputs.default-tag }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+
+      # This approach currently uses the Cosign v2 signing format until Podman supports v3
+      # See: https://github.com/podman-container-tools/container-libs/issues/388
+      # See: https://github.com/coreos/rpm-ostree/issues/5509
+      - name: Sign container image
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        run: |
+          IMAGE_FULL="${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}"
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY --tlog-upload=false --new-bundle-format=false --use-signing-config=false "$IMAGE_FULL@${{ env.DIGEST }}"
+        env:
+          DIGEST: ${{ steps.push.outputs.digest }}
+          COSIGN_EXPERIMENTAL: false
+          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+
+      - name: Build telemetry summary
+        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          IMAGE_SIZE=$(sudo podman image inspect "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}" \
+            --format '{{.Size}}' 2>/dev/null || echo "0")
+          IMAGE_SIZE_MB=$(( IMAGE_SIZE / 1024 / 1024 ))
+          LAYER_COUNT=$(sudo podman image inspect "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}" \
+            --format '{{len .RootFS.Layers}}' 2>/dev/null || echo "?")
+
+          {
+            echo "## Build Telemetry: ${{ env.IMAGE_NAME }}"
+            echo ""
+            echo "**Image size (uncompressed):** ${IMAGE_SIZE_MB} MB"
+            echo "**Layer count:** ${LAYER_COUNT}"
+          } >> "$GITHUB_STEP_SUMMARY"

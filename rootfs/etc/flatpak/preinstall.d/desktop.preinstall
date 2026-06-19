@@ -1,0 +1,32 @@
+# Desktop Workload Apps
+
+# These will be installed on first boot
+# Format: INI file with [Flatpak Preinstall NAME] groups
+# See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
+
+[Flatpak Preinstall org.signal.Signal]
+Branch=stable
+
+[Flatpak Preinstall com.bitwarden.desktop]
+Branch=stable
+
+[Flatpak Preinstall org.keepassxc.KeePassXC]
+Branch=stable
+
+[Flatpak Preinstall im.riot.Riot]
+Branch=stable
+
+[Flatpak Preinstall md.obsidian.Obsidian]
+Branch=stable
+
+[Flatpak Preinstall org.libreoffice.LibreOffice]
+Branch=stable
+
+[Flatpak Preinstall com.transmissionbt.Transmission]
+Branch=stable
+
+[Flatpak Preinstall org.jdownloader.JDownloader]
+Branch=stable
+
+[Flatpak Preinstall org.raspberrypi.rpi-imager]
+Branch=stable

@@ -1,0 +1,3 @@
+docker:
+  ghcr.io/alexhaydock/evergreen:
+    use-sigstore-attachments: true

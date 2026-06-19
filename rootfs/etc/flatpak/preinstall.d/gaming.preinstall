@@ -1,0 +1,14 @@
+# Gaming
+
+# These will be installed on first boot
+# Format: INI file with [Flatpak Preinstall NAME] groups
+# See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
+
+[Flatpak Preinstall com.valvesoftware.Steam]
+Branch=stable
+
+[Flatpak Preinstall net.supertuxkart.SuperTuxKart]
+Branch=stable
+
+[Flatpak Preinstall org.srb2.SRB2Kart]
+Branch=stable
