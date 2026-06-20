@@ -43,6 +43,7 @@ FEDORA_PACKAGES=(
     waypipe # Wayland session forwarding
     wireshark
     yamllint
+    yq
     yt-dlp
 )
 
