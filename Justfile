@@ -60,10 +60,11 @@ sudoif command *args:
     function sudoif(){
         if [[ "${UID}" -eq 0 ]]; then
             "$@"
-        elif [[ "$(command -v sudo)" && -n "${SSH_ASKPASS:-}" ]] && [[ -n "${DISPLAY:-}" || -n "${WAYLAND_DISPLAY:-}" ]]; then
-            /usr/bin/env sudo --askpass "$@" || exit 1
-        elif [[ "$(command -v sudo)" ]]; then
-            /usr/bin/env sudo "$@" || exit 1
+        elif command -v sudo >/dev/null 2>&1; then
+            sudo "$@" || exit 1
+        # Use run0 if we don't have sudo installed
+        elif command -v run0 >/dev/null 2>&1; then
+            run0 "$@" || exit 1
         else
             exit 1
         fi
@@ -241,7 +242,7 @@ _rootful_load_image $target_image=IMAGE_NAME $tag=DEFAULT_TAG:
         if [[ "$ID" != "$USER_IMG_ID" ]]; then
             # If the image ID is not found or different from user, copy the image from user podman to root podman
             COPYTMP=$(mktemp -p "${PWD}" -d -t _build_podman_scp.XXXXXXXXXX)
-            just sudoif TMPDIR=${COPYTMP} podman image scp ${UID}@localhost::"${target_image}:${tag}" root@localhost::"${target_image}:${tag}"
+            TMPDIR=${COPYTMP} just sudoif podman image scp ${UID}@localhost::"${target_image}:${tag}" root@localhost::"${target_image}:${tag}"
             rm -rf "${COPYTMP}"
         fi
     else
@@ -268,7 +269,7 @@ _build-bib $target_image $tag $type $config: (_rootful_load_image target_image t
 
     BUILDTMP=$(mktemp -p "${PWD}" -d -t _build-bib.XXXXXXXXXX)
 
-    sudo podman run \
+    just sudoif podman run \
       --rm \
       -it \
       --privileged \
@@ -283,9 +284,9 @@ _build-bib $target_image $tag $type $config: (_rootful_load_image target_image t
       "${target_image}:${tag}"
 
     mkdir -p output
-    sudo mv -f $BUILDTMP/* output/
-    sudo rmdir $BUILDTMP
-    sudo chown -R $USER:$USER output/
+    just sudoif mv -f $BUILDTMP/* output/
+    just sudoif rmdir $BUILDTMP
+    just sudoif chown -R $USER:$USER output/
 
 # Podman builds the image from the Containerfile and creates a bootable image
 # Parameters:

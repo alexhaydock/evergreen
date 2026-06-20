@@ -4,20 +4,7 @@
 
 # /etc/dconf/db/distro.d/99-evergreen
 
-[org/gnome/shell]
-allow-extension-installation=false
-favorite-apps=['io.gitlab.librewolf-community.desktop', 'org.gnome.Nautilus.desktop', 'org.signal.Signal.desktop', 'im.riot.Riot.desktop', 'org.jeffvli.feishin.desktop', 'md.obsidian.Obsidian.desktop', 'org.vscodium.codium.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.Ptyxis.desktop']
-enabled-extensions=['']
-
 [org/gnome/desktop/background]
-color-shading-type='solid'
-picture-options='zoom'
-picture-uri='file:///usr/share/backgrounds/gnome/progress-l.jxl'
-picture-uri-dark='file:///usr/share/backgrounds/gnome/progress-d.jxl'
-primary-color='#967864'
-secondary-color='#000000'
-
-[org/gnome/desktop/screensaver]
 color-shading-type='solid'
 picture-options='zoom'
 picture-uri='file:///usr/share/backgrounds/gnome/progress-l.jxl'
@@ -27,11 +14,11 @@ secondary-color='#000000'
 
 [org/gnome/desktop/interface]
 accent-color='teal'
-color-scheme='prefer-dark'
 clock-format='12h'
 clock-show-weekday=true
+color-scheme='prefer-dark'
+enable-hot-corners=true
 show-battery-percentage=true
-text-scaling-factor=1
 
 [org/gnome/desktop/notifications]
 show-in-lock-screen=false
@@ -44,6 +31,14 @@ remember-recent-files=false
 remove-old-temp-files=true
 remove-old-trash-files=true
 report-technical-problems=false
+
+[org/gnome/desktop/screensaver]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/gnome/progress-l.jxl'
+picture-uri-dark='file:///usr/share/backgrounds/gnome/progress-d.jxl'
+primary-color='#967864'
+secondary-color='#000000'
 
 [org/gnome/nautilus/icon-view]
 default-zoom-level='large'
@@ -60,6 +55,11 @@ night-light-temperature=3700
 ambient-enabled=false
 sleep-inactive-ac-type='suspend'
 sleep-inactive-ac-timeout=3600
+
+[org/gnome/shell]
+allow-extension-installation=false
+favorite-apps=['io.gitlab.librewolf-community.desktop', 'org.gnome.Nautilus.desktop', 'org.signal.Signal.desktop', 'im.riot.Riot.desktop', 'org.jeffvli.feishin.desktop', 'md.obsidian.Obsidian.desktop', 'com.vscodium.codium.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop']
+enabled-extensions=['']
 
 [org/gnome/system/location]
 enabled=false
