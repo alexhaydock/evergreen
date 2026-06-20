@@ -6,8 +6,8 @@
 
 [org/gnome/shell]
 allow-extension-installation=false
-favorite-apps = ['io.gitlab.librewolf-community.desktop', 'org.gnome.Nautilus.desktop', 'org.signal.Signal.desktop', 'im.riot.Riot.desktop', 'org.jeffvli.feishin.desktop', 'md.obsidian.Obsidian.desktop', 'org.vscodium.codium.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.Ptyxis.desktop']
-enabled-extensions = []
+favorite-apps=['io.gitlab.librewolf-community.desktop', 'org.gnome.Nautilus.desktop', 'org.signal.Signal.desktop', 'im.riot.Riot.desktop', 'org.jeffvli.feishin.desktop', 'md.obsidian.Obsidian.desktop', 'org.vscodium.codium.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.Ptyxis.desktop']
+enabled-extensions=['']
 
 [org/gnome/desktop/background]
 color-shading-type='solid'
