@@ -68,6 +68,9 @@ if [ -f /usr/bin/umotd ]; then
 fi
 
 # Remove any remnants of Homebrew config
+if [ -f /usr/lib/systemd/user-preset/01-brew-preinstall.preset ]
+    rm -v /usr/lib/systemd/user-preset/01-brew-preinstall.preset
+fi
 if [ -d /usr/share/ublue-os/homebrew ]; then
     rm -rv /usr/share/ublue-os/homebrew
 fi
