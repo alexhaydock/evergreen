@@ -8,12 +8,21 @@ The aim is for all the static config for my OS to live in this repo - making thi
 
 ## Rebasing to this image
 
+### Daily channel
+Daily images are published immediately any time a successful CI run completes.
+
 ```sh
 sudo bootc switch ghcr.io/alexhaydock/evergreen:stable-daily
 ```
 
-## Validating this image locally
+### Weekly channel
+Weekly images are promoted on Tuesdays when a successful `stable-daily` build completes on that day.
 
+```sh
+sudo bootc switch ghcr.io/alexhaydock/evergreen:stable
+```
+
+## Validating this image locally
 Evergreen images are signed using Cosign and can be validated manually as follows:
 
 ```sh
@@ -65,7 +74,6 @@ To allow Renovate to operate with full powers (including creating and automergin
 See: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 
 ### Configuring Cosign to sign built images
-
 To generate keys with Cosign and add them to this repo:
 
 1. Run: `cosign generate-key-pair`
