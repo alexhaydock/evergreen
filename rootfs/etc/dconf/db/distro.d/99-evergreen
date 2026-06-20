@@ -60,6 +60,10 @@ default-zoom-level='large'
 recursive-search='always'
 show-image-thumbnails='always'
 
+[org/gnome/Ptyxis]
+default-columns=uint32 120
+default-rows=uint32 36
+
 [org/gnome/settings-daemon/plugins/color]
 night-light-enabled=true
 night-light-temperature=3700
