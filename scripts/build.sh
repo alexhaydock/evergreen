@@ -21,6 +21,9 @@ shopt -s nullglob
 # Install packages
 /ctx/scripts/20-packages.sh
 
+# Remove sudo from the base install
+/ctx/scripts/30-remove-sudo.sh
+
 # Cleanup
 /ctx/scripts/99-cleanup.sh
 
