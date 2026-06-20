@@ -46,7 +46,7 @@ IMAGE_REF="ostree-image-signed:docker://ghcr.io/${IMAGE_VENDOR}/${IMAGE_NAME}"
 # Write image-info.json
 ###############################################################################
 mkdir -p /usr/share/ublue-os
-cat > "${IMAGE_INFO}" << EOF
+cat >"${IMAGE_INFO}" <<EOF
 {
   "image-name": "${IMAGE_NAME}",
   "image-flavor": "${IMAGE_FLAVOR}",
@@ -66,15 +66,17 @@ echo "  image-vendor: ${IMAGE_VENDOR}"
 ###############################################################################
 # Customize /usr/lib/os-release
 ###############################################################################
-# Read existing values
-if [[ -n "${VERSION:-}" ]]; then
-  OS_VERSION="${VERSION}"
-else
-  OS_VERSION="${UBLUE_IMAGE_TAG}"
-fi
+# Only modify if the file exists and VARIANT_ID is not already set
+if [[ -f "${OS_RELEASE}" ]] && ! grep -q "^VARIANT_ID=" "${OS_RELEASE}"; then
+  # Read existing values
+  if [[ -n "${VERSION:-}" ]]; then
+      OS_VERSION="${VERSION}"
+  else
+      OS_VERSION="${UBLUE_IMAGE_TAG}"
+  fi
 
-# Append our identity
-cat >> "${OS_RELEASE}" << EOF
+  # Append our identity
+  cat >>"${OS_RELEASE}" <<EOF
 
 # ${IMAGE_NAME} image identity
 VARIANT_ID="${IMAGE_FLAVOR}"
@@ -89,6 +91,5 @@ SUPPORT_URL="${SUPPORT_URL}"
 BUG_REPORT_URL="${BUG_REPORT_URL}"
 EOF
 
-echo "Customized ${OS_RELEASE}"
-
-echo "::endgroup::"
+  echo "Customized ${OS_RELEASE}"
+fi
