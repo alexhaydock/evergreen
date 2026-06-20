@@ -1,12 +1,14 @@
 # Podman service
 enable podman.socket
 
+# Podman auto update timer
+enable podman-auto-update.timer
+
 # Evergreen "declarative-ish" services
 enable dconf-update.service
 enable flatpak-preinstall.service
 
-# Universal Blue upstream services
-enable uupd.timer
+# Universal Blue upstream setup service (System-level)
 enable ublue-system-setup.service
 
 # Firmware updater

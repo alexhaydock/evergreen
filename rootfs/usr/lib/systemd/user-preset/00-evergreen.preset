@@ -1,0 +1,5 @@
+# Podman auto update timer
+enable podman-auto-update.timer
+
+# Universal Blue upstream setup service (User-level)
+enable ublue-user-setup.service
