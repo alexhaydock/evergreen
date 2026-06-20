@@ -37,6 +37,7 @@ FEDORA_PACKAGES=(
     pre-commit
     quickemu # Also pulls in QEMU
     rpminspect
+    ShellCheck
     socat
     sshfs
     vhs # For creating shell recordings for documentation
