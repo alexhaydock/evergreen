@@ -47,6 +47,12 @@ picture-uri-dark='file:///usr/share/backgrounds/gnome/progress-d.jxl'
 primary-color='#967864'
 secondary-color='#000000'
 
+[org/gnome/gnome-system-monitor]
+graph-update-interval=3000
+network-in-bits=true
+resources-memory-in-iec=true
+show-whose-processes='all'
+
 [org/gnome/nautilus/icon-view]
 default-zoom-level='large'
 
@@ -73,9 +79,3 @@ enabled=false
 
 [org/gnome/TextEditor]
 restore-session=false
-
-[org/gnome/gnome-system-monitor]
-graph-update-interval=3000
-network-in-bits=true
-resources-memory-in-iec=true
-show-whose-processes='all'
