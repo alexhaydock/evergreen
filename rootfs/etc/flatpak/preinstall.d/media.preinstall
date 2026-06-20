@@ -12,3 +12,6 @@ Branch=stable
 
 [Flatpak Preinstall org.jeffvli.feishin]
 Branch=stable
+
+[Flatpak Preinstall app.drey.EarTag]
+Branch=stable
