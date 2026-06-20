@@ -12,6 +12,13 @@ picture-uri-dark='file:///usr/share/backgrounds/gnome/progress-d.jxl'
 primary-color='#967864'
 secondary-color='#000000'
 
+# Set UK keyboard. Extra useful as the installer we get
+# with build-iso defaults to only installing in US mode
+# and this isn't selectable during installation.
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'gb')]
+current=0
+
 [org/gnome/desktop/interface]
 accent-color='teal'
 clock-format='12h'

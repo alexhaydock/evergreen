@@ -58,7 +58,19 @@ if [ -f /etc/profile.d/user-motd.sh ]; then
     rm -v /etc/profile.d/user-motd.sh
 fi
 
+# Remove the modern umotd config since it doesn't
+# really add anything but attack surface
+if [ -f /etc/profile.d/umotd.sh ]; then
+    rm -v /etc/profile.d/umotd.sh
+fi
+if [ -f /usr/bin/umotd ]; then
+    rm -v /usr/bin/umotd
+fi
+
 # Remove any remnants of Homebrew config
+if [ -f /usr/lib/systemd/user-preset/01-brew-preinstall.preset ]
+    rm -v /usr/lib/systemd/user-preset/01-brew-preinstall.preset
+fi
 if [ -d /usr/share/ublue-os/homebrew ]; then
     rm -rv /usr/share/ublue-os/homebrew
 fi
