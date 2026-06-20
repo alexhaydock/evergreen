@@ -24,6 +24,9 @@ shopt -s nullglob
 # Remove sudo from the base install
 /ctx/scripts/30-remove-sudo.sh
 
+# Apply systemd service presets
+/ctx/scripts/40-services.sh
+
 # Cleanup
 /ctx/scripts/99-cleanup.sh
 
