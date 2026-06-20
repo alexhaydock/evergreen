@@ -37,6 +37,7 @@ FEDORA_PACKAGES=(
     pre-commit
     quickemu # Also pulls in QEMU
     rpminspect
+    ShellCheck
     socat
     sshfs
     vhs # For creating shell recordings for documentation
@@ -65,6 +66,7 @@ EXCLUDED_PACKAGES=(
     gnome-software
     gnome-software-rpm-ostree
     gnome-terminal-nautilus
+    gnome-tour
     podman-docker
     yelp
 )
