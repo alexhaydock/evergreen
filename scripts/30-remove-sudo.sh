@@ -3,7 +3,7 @@
 
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -ouex pipefail
 
 rm -f /etc/dnf/protected.d/sudo.conf
 
