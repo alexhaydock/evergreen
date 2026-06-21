@@ -29,6 +29,7 @@ FEDORA_PACKAGES=(
     go
     hadolint
     iperf3
+    libcurl.x86_64 # Install full libcurl to obsolete libcurl-minimal (remove when resolved upstream: https://forge.fedoraproject.org/atomic-desktops/tracker/issues/120) - Sidenote I have no idea why it needs the .x86_64 but it was installing the .i686 version otherwise
     links2
     make
     nmap
@@ -51,7 +52,7 @@ FEDORA_PACKAGES=(
 
 # Install all Fedora packages (bulk - safe from COPR injection)
 echo "Installing ${#FEDORA_PACKAGES[@]} packages from Fedora repos..."
-dnf -y install "${FEDORA_PACKAGES[@]}"
+dnf -y install --allowerasing "${FEDORA_PACKAGES[@]}"
 
 # Packages to exclude - common to all versions
 EXCLUDED_PACKAGES=(
