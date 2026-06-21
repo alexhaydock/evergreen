@@ -69,6 +69,11 @@ EXCLUDED_PACKAGES=(
     gnome-tour
     localsearch
     podman-docker
+    sssd-client
+    sssd-common
+    sssd-kcm
+    sssd-krb5-common
+    sssd-nfs-idmap
     yelp
 )
 
