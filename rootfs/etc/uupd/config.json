@@ -1,0 +1,22 @@
+{
+    "checks": {
+        "hardware": {
+            "enable": true,
+            "bat-min-percent": 40
+        }
+    },
+    "modules": {
+        "brew": {
+            "disable": true
+        },
+        "distrobox": {
+            "disable": true
+        },
+        "flatpak": {
+            "disable": false
+        },
+        "system": {
+            "disable": false
+        }
+    }
+}
