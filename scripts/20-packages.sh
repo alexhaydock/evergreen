@@ -68,6 +68,7 @@ EXCLUDED_PACKAGES=(
     gnome-software-rpm-ostree
     gnome-terminal-nautilus
     gnome-tour
+    localsearch
     podman-docker
     yelp
 )
