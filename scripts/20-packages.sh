@@ -55,7 +55,6 @@ dnf -y install "${FEDORA_PACKAGES[@]}"
 
 # Packages to exclude - common to all versions
 EXCLUDED_PACKAGES=(
-    cosign
     cups
     fedora-bookmarks
     fedora-chromium-config
