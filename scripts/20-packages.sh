@@ -55,7 +55,6 @@ dnf -y install "${FEDORA_PACKAGES[@]}"
 
 # Packages to exclude - common to all versions
 EXCLUDED_PACKAGES=(
-    cosign
     cups
     fedora-bookmarks
     fedora-chromium-config
@@ -68,7 +67,13 @@ EXCLUDED_PACKAGES=(
     gnome-software-rpm-ostree
     gnome-terminal-nautilus
     gnome-tour
+    localsearch
     podman-docker
+    sssd-client
+    sssd-common
+    sssd-kcm
+    sssd-krb5-common
+    sssd-nfs-idmap
     yelp
 )
 
