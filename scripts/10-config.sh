@@ -19,7 +19,9 @@ rsync -rvK /ctx/system_files/shared/etc/bazaar/ /etc/bazaar/
 # Bring in container registry YAMLs and pubkeys
 # We don't need the Bluefin policy.json since I'm already
 # shipping my own version of that file
+mkdir -p /etc/containers
 rsync -rvK /ctx/system_files/shared/etc/containers/registries.d/ /etc/containers/registries.d/
+mkdir -p /usr/lib/pki
 rsync -rvK /ctx/system_files/shared/usr/lib/pki/containers/ /usr/lib/pki/containers/
 
 # Bring in ujust
@@ -31,11 +33,14 @@ rsync -rvK /ctx/system_files/shared/usr/lib/systemd/ /usr/lib/systemd/
 
 # Import Flatpak config override for Bazaar
 cp -fv /ctx/system_files/shared/usr/lib/tmpfiles.d/bazaar-flatpak.conf /usr/lib/tmpfiles.d/bazaar-flatpak.conf
+mkdir -p /usr/share/ublue-os/flatpak-overrides
 cp -fv /ctx/system_files/shared/usr/share/ublue-os/flatpak-overrides/io.github.kolunmi.Bazaar /usr/share/ublue-os/flatpak-overrides/io.github.kolunmi.Bazaar
 
 # Copy sops
-cp -fv /ctx/system_files/shared/usr/local/bin/sops /usr/local/bin/sops
-chmod +x /usr/local/bin/sops
+# We put this in /usr/bin rather than /usr/local/bin
+# since /usr/local/bin is a symlink to /var/usrlocal
+cp -fv /ctx/system_files/shared/usr/bin/sops /usr/bin/sops
+chmod +x /usr/bin/sops
 
 # Might as well bring in the wallpapers and branding
 rsync -rvK /ctx/system_files/shared/usr/share/backgrounds/bluefin/ /usr/share/backgrounds/bluefin/
