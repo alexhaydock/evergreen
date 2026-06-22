@@ -62,7 +62,7 @@ COPY --from=common /system_files/shared /system_files/shared
 COPY --from=common /system_files/bluefin /system_files/shared
 
 # Copy sops binary into container
-COPY --from=sops /usr/bin/sops /system_files/shared/usr/bin/sops
+COPY --from=sops /usr/local/bin/sops /system_files/shared/usr/bin/sops
 
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
