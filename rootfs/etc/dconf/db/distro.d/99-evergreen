@@ -62,9 +62,12 @@ show-image-thumbnails='always'
 
 [org/gnome/Ptyxis]
 default-columns=uint32 120
+default-profile-uuid='870843669776d75ebe1e66866a3be555'
 default-rows=uint32 36
+profile-uuids=['870843669776d75ebe1e66866a3be555']
 
-[org/gnome/Ptyxis/Profiles/2871e8027773ae74d6c87a5f659bbc74]
+[org/gnome/Ptyxis/Profiles/870843669776d75ebe1e66866a3be555]
+label='Evergreen'
 palette='catppuccin-dynamic'
 
 [org/gnome/settings-daemon/plugins/color]
