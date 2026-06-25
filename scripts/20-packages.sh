@@ -12,7 +12,7 @@ source /ctx/scripts/copr-helpers.sh
 copr_install_isolated "ublue-os/packages" "uupd"
 
 # Bring in NetworkManager dev branch for access to CLAT
-copr_upgrade_isolated "networkmanager/NetworkManager-main" "NetworkManager"
+#copr_upgrade_isolated "networkmanager/NetworkManager-main" "NetworkManager"
 
 # Define package install set
 FEDORA_PACKAGES=(
@@ -25,6 +25,7 @@ FEDORA_PACKAGES=(
     bpftop
     conntrack-tools
     crun-krun # Provides krun backend for Podman to start microVMs
+    dnsconfd-unbound # Bring in Unbound and the corresponding dnsconfd management service
     fastfetch
     go
     hadolint
