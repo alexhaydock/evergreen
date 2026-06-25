@@ -27,6 +27,3 @@ Branch=stable
 
 [Flatpak Preinstall io.github.kolunmi.Bazaar]
 Branch=stable
-
-[Flatpak Preinstall page.tesk.Refine]
-Branch=stable
