@@ -12,6 +12,7 @@ set -ouex pipefail
 #   NetworkManager to use com.redhat.dnsconfd instead of
 #   org.freedesktop.resolve1, and
 # - setting the permissions of /etc/resolv.conf manually here.
+echo '' > /etc/resolv.conf # Do not include this as a file or it will be used by the container during the build process and breaks DNS resolution for package installs
 chown dnsconfd:root /etc/resolv.conf
 
 echo "::endgroup::"
