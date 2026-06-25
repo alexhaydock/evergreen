@@ -12,10 +12,11 @@ set -eoux pipefail
 # Enable nullglob for all glob operations to prevent failures on empty matches
 shopt -s nullglob
 
-# Execute all scripts in the scripts/ directory in
-# numbered preference order
-for i in /ctx/scripts/*.sh; do
-  ${i}
+# Execute all numbered scripts in the scripts/
+# directory (in numbered preference order)
+for i in /ctx/scripts/[0-9][0-9]-*.sh; do
+  [[ -f "$i" ]] || continue
+  "$i"
 done
 
 # Restore default glob behavior
