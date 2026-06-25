@@ -12,32 +12,11 @@ set -eoux pipefail
 # Enable nullglob for all glob operations to prevent failures on empty matches
 shopt -s nullglob
 
-# Generate image-info.json for the MOTD to consume
-/ctx/scripts/00-image-info.sh
-
-# Copy configs into container
-/ctx/scripts/10-config.sh
-
-# Install packages
-/ctx/scripts/20-packages.sh
-
-# Remove sudo from the base install
-/ctx/scripts/30-remove-sudo.sh
-
-# Apply systemd service presets
-/ctx/scripts/40-services.sh
-
-# Helper script for DNS resolver config
-/ctx/scripts/50-dns.sh
-
-# Strip SUID/SGID bits from binaries
-/ctx/scripts/60-remove-suid.sh
-
-# Download adblock list for Unbound
-/ctx/scripts/70-pinehole.sh
-
-# Cleanup
-/ctx/scripts/99-cleanup.sh
+# Execute all scripts in the scripts/ directory in
+# numbered preference order
+for i in /ctx/scripts/*.sh; do
+  ${i}
+done
 
 # Restore default glob behavior
 shopt -u nullglob
