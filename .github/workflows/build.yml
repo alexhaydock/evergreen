@@ -88,20 +88,8 @@ jobs:
           cache-name: ${{ env.IMAGE_NAME }}
           cache-bust: ${{ hashFiles('**/Containerfile') }}
 
-      - name: Detect changes
-        id: detect-changes
-        uses: projectbluefin/actions/bootc-build/detect-changes@b2481faee5bad2f2a25b64d6269b06399a2f44c0 # v1
-        with:
-          filters: |
-            image:
-              - 'Containerfile'
-              - 'build/**'
-              - 'custom/**'
-              - 'image-versions.yml'
-              - 'Justfile'
-
       - name: Build image
-        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         id: build-image
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
         env:
@@ -119,7 +107,7 @@ jobs:
             sudo -E "$(command -v just)" build "${IMAGE_NAME}" "${DEFAULT_TAG}"
 
       - name: Get version label
-        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         id: version
         shell: bash
         env:
@@ -132,7 +120,7 @@ jobs:
           echo "Version: ${VERSION_LABEL}"
 
       - name: Generate tags
-        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         id: generate-tags
         uses: projectbluefin/actions/bootc-build/generate-tags@b2481faee5bad2f2a25b64d6269b06399a2f44c0 # v1
         with:
@@ -215,7 +203,7 @@ jobs:
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
       - name: Build telemetry summary
-        if: steps.detect-changes.outputs.should_build == 'true' || github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           IMAGE_SIZE=$(sudo podman image inspect "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}" \
