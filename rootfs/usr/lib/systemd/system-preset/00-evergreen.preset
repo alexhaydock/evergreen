@@ -17,5 +17,8 @@ enable fwupd.service
 # Smartcard daemon for age-plugin-yubikey
 enable pcscd.service
 
+# Enable dnsconfd to manage DNS
+enable dnsconfd.service
+
 # Disable the old rpm-ostree timer if it exists
 disable rpm-ostreed-automatic.timer

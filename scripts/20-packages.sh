@@ -25,6 +25,7 @@ FEDORA_PACKAGES=(
     bpftop
     conntrack-tools
     crun-krun # Provides krun backend for Podman to start microVMs
+    dnsconfd-unbound # Bring in Unbound and the corresponding dnsconfd management service
     fastfetch
     go
     hadolint

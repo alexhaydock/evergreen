@@ -11,6 +11,7 @@ systemctl --global preset-all
 # Preset files cannot mask services so to mask services we need
 # to create the symlinks to /dev/null in the appropriate
 # /etc/systemd subdirectory
+ln -sv /dev/null /etc/systemd/system/systemd-resolved.service
 ln -sv /dev/null /etc/systemd/user/localsearch-3.service
 
 echo "::endgroup::"
