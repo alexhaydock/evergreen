@@ -27,6 +27,15 @@ shopt -s nullglob
 # Apply systemd service presets
 /ctx/scripts/40-services.sh
 
+# Helper script for DNS resolver config
+/ctx/scripts/50-dns.sh
+
+# Strip SUID/SGID bits from binaries
+/ctx/scripts/60-remove-suid.sh
+
+# Download adblock list for Unbound
+/ctx/scripts/70-pinehole.sh
+
 # Cleanup
 /ctx/scripts/99-cleanup.sh
 
