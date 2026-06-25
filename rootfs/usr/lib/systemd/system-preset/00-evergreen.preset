@@ -19,6 +19,8 @@ enable pcscd.service
 
 # Enable dnsconfd to manage DNS
 enable dnsconfd.service
+enable unbound.socket
+enable unbound-control.socket
 
 # Disable the old rpm-ostree timer if it exists
 disable rpm-ostreed-automatic.timer
