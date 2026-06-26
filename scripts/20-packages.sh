@@ -22,6 +22,7 @@ FEDORA_PACKAGES=(
     bat # Like cat, but cooler
     beets
     below
+    binwalk
     bpftop
     conntrack-tools
     crun-krun # Provides krun backend for Podman to start microVMs
