@@ -15,3 +15,6 @@ Branch=stable
 
 [Flatpak Preinstall it.mq1.TinyWiiBackupManager]
 Branch=stable
+
+[Flatpak Preinstall org.DolphinEmu.dolphin-emu]
+Branch=stable
