@@ -1,0 +1,5 @@
+# Podman auto update timer
+enable podman-auto-update.timer
+
+# Disable the old rpm-ostree timer if it exists
+disable rpm-ostreed-automatic.timer

@@ -1,0 +1,15 @@
+# Evergreen "declarative-ish" services
+enable dconf-update.service
+enable flatpak-preinstall.service
+
+# Universal Blue upstream setup service (System-level)
+enable ublue-system-setup.service
+
+# Firmware updater
+enable fwupd.service
+
+# Smartcard daemon for age-plugin-yubikey
+enable pcscd.service
+
+# Enable dnsconfd to manage DNS
+enable dnsconfd.service
