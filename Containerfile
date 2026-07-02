@@ -46,7 +46,7 @@ ARG UBLUE_IMAGE_TAG="stable"
 # Import Stage # - Import the common image from Bluefin/Universal Blue upstream
 ################
 FROM ghcr.io/projectbluefin/common:latest@sha256:6c7b21df6f5da9d521c4629300c495e9c8085dd662af6e3bed577101858847e8 AS common
-FROM ghcr.io/getsops/sops:v3.13.1-alpine@sha256:032061a34e728c635b0d1830f9d26b844022e1284efe7707736e7ef52b49ba38 as sops
+FROM ghcr.io/getsops/sops:v3.13.2-alpine@sha256:44281df05669d76e9a76f2bf7d190e653b5f1c33317321de61234954797fb1ec as sops
 
 #################
 # Context Stage # - Combine local resources from this repo and Bluefin upstreams from their published OCI images
