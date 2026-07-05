@@ -24,7 +24,7 @@ echo 'server:' > /etc/unbound/conf.d/zz-pinehole.conf
 # ad domain that's on the list, rather than just serving 0.0.0.0 as an
 # A record which might not be quite so robust
 curl -fsSL https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | \
-  awk '$1=="0.0.0.0" { print "    local-zone: \"" $2 "\" always_nxdomain" }' > /etc/unbound/conf.d/zz-pinehole.conf
+  awk '$1=="0.0.0.0" { print "    local-zone: \"" $2 "\" always_nxdomain" }' >> /etc/unbound/conf.d/zz-pinehole.conf
 
 # Check to ensure that the file has more than 10,000 entries
 # and fail the CI run if it doesn't
