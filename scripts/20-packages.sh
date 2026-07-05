@@ -40,6 +40,7 @@ FEDORA_PACKAGES=(
     optipng
     pre-commit
     quickemu # Also pulls in QEMU
+    rpi-imager # Flatpak updates too slowly: https://github.com/flathub/org.raspberrypi.rpi-imager/issues/66
     rpminspect
     ShellCheck
     socat
