@@ -3,10 +3,6 @@
 # Enabled as a socket as we don't need the API service all the time
 enable podman.socket
 
-# Enable the unbound sockets for dnsconfd to use
-enable unbound.socket
-enable unbound-control.socket
-
 # Enable the socket-activated polkit-agent-helper
 # which allows us to run without SUID
 # See: https://github.com/polkit-org/polkit/commit/c007940054392b67b84b6044dda8a215040d8eb5

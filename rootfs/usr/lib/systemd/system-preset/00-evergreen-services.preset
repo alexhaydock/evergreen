@@ -10,6 +10,3 @@ enable fwupd.service
 
 # Smartcard daemon for age-plugin-yubikey
 enable pcscd.service
-
-# Enable dnsconfd to manage DNS
-enable dnsconfd.service
