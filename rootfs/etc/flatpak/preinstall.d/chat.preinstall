@@ -1,0 +1,14 @@
+# Chat Client Apps
+
+# These will be installed on first boot
+# Format: INI file with [Flatpak Preinstall NAME] groups
+# See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
+
+[Flatpak Preinstall org.signal.Signal]
+Branch=stable
+
+[Flatpak Preinstall im.riot.Riot]
+Branch=stable
+
+[Flatpak Preinstall chat.delta.desktop]
+Branch=stable
