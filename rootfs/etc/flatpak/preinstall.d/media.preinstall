@@ -13,5 +13,5 @@ Branch=stable
 [Flatpak Preinstall org.jeffvli.feishin]
 Branch=stable
 
-[Flatpak Preinstall app.drey.EarTag]
+[Flatpak Preinstall org.gnome.EasyTAG]
 Branch=stable
