@@ -12,3 +12,6 @@ Branch=stable
 
 [Flatpak Preinstall chat.delta.desktop]
 Branch=stable
+
+[Flatpak Preinstall app.fluxer.Fluxer]
+Branch=stable
