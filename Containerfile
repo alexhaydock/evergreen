@@ -45,7 +45,7 @@ ARG UBLUE_IMAGE_TAG="stable"
 ################
 # Import Stage # - Import the common image from Bluefin/Universal Blue upstream
 ################
-FROM ghcr.io/projectbluefin/common:latest@sha256:653b75fa7c2b5d7dfd84b50d818cc6986c93b18438f74334765b211370f88b84 AS common
+FROM ghcr.io/projectbluefin/common:latest@sha256:d9a4da45c9f68a725d23c8b57a3271ae72a78bf207331ee86eb51da2bdb2d3b3 AS common
 FROM ghcr.io/getsops/sops:v3.13.2-alpine@sha256:44281df05669d76e9a76f2bf7d190e653b5f1c33317321de61234954797fb1ec as sops
 
 #################
