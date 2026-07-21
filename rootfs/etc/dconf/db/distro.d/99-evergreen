@@ -81,7 +81,8 @@ sleep-inactive-ac-timeout=3600
 
 [org/gnome/shell]
 allow-extension-installation=false
-favorite-apps=['io.gitlab.librewolf-community.desktop', 'org.gnome.Nautilus.desktop', 'org.signal.Signal.desktop', 'im.riot.Riot.desktop', 'org.jeffvli.feishin.desktop', 'md.obsidian.Obsidian.desktop', 'com.vscodium.codium.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop']
+# gsettings get org.gnome.shell favorite-apps
+favorite-apps=['io.gitlab.librewolf-community.desktop', 'org.gnome.Nautilus.desktop', 'org.signal.Signal.desktop', 'app.fluxer.Fluxer.desktop', 'im.riot.Riot.desktop', 'org.jeffvli.feishin.desktop', 'md.obsidian.Obsidian.desktop', 'com.vscodium.codium.desktop', 'com.bitwarden.desktop.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.Ptyxis.desktop']
 enabled-extensions=['']
 
 [org/gnome/system/location]
