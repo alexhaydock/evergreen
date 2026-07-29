@@ -33,6 +33,7 @@ FEDORA_PACKAGES=(
     libcurl.x86_64 # Install full libcurl to obsolete libcurl-minimal (remove when resolved upstream: https://forge.fedoraproject.org/atomic-desktops/tracker/issues/120) - Sidenote I have no idea why it needs the .x86_64 but it was installing the .i686 version otherwise
     links2
     make
+    mediainfo
     nmap
     nyancat
     opentofu
