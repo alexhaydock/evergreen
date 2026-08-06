@@ -1,5 +1,8 @@
 # Podman auto update timer
 enable podman-auto-update.timer
 
+# Flatpak auto update timer
+enable flatpak-system-update.timer
+
 # Disable the old rpm-ostree timer if it exists
 disable rpm-ostreed-automatic.timer
