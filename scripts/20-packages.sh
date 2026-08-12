@@ -26,6 +26,7 @@ FEDORA_PACKAGES=(
     bpftop
     conntrack-tools
     crun-krun # Provides krun backend for Podman to start microVMs
+    fakeroot
     fastfetch
     go
     hadolint
