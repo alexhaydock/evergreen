@@ -45,7 +45,6 @@ ARG UBLUE_IMAGE_TAG="stable"
 ################
 # Import Stage # - Import the common image from Bluefin/Universal Blue upstream
 ################
-FROM ghcr.io/projectbluefin/common:latest@sha256:fb943c87866292fb74eb74610e9cd08a1a91fe42e763e28473f3f57cf18f26a5 AS common
 FROM ghcr.io/getsops/sops:v3.13.3-alpine@sha256:ae501277bf742f1662e0f881f43dd8fd6798b489a8058e921dbf6cda597140ea as sops
 
 #################
@@ -55,11 +54,6 @@ FROM scratch AS ctx
 
 COPY scripts /scripts
 COPY rootfs /rootfs
-
-# Copy from common container as Bluefin itself does upstream
-# See: https://github.com/ublue-os/bluefin/blob/0fa8f9031075742c035d634d1a9c49d59ecfd21b/Containerfile#L16-L17
-COPY --from=common /system_files/shared /system_files/shared
-COPY --from=common /system_files/bluefin /system_files/shared
 
 # Copy sops binary into container
 COPY --from=sops /usr/local/bin/sops /system_files/shared/usr/bin/sops
