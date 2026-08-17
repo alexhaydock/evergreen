@@ -24,6 +24,3 @@ Branch=stable
 
 [Flatpak Preinstall com.ranfdev.DistroShelf]
 Branch=stable
-
-[Flatpak Preinstall io.github.kolunmi.Bazaar]
-Branch=stable
