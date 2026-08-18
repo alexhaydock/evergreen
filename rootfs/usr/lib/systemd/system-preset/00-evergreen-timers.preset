@@ -1,3 +1,6 @@
+# System auto update timer
+enable uupd.timer
+
 # Podman auto update timer
 enable podman-auto-update.timer
 
