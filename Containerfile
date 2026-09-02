@@ -61,7 +61,7 @@ COPY --from=sops /usr/local/bin/sops /system_files/shared/usr/bin/sops
 ###############
 # Build Stage # - Use Silverblue base image and run buildscripts on top of it
 ###############
-FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:421e378f4dee16409fb62942816f1aa5829cdab6d0280506ec1bc19b825aeacc
+FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:d588f86d68b18ce282371f06f52672633644f3c9192637a8aa8a726b53f45884
 
 # Re-declare ARGs for this stage (Docker requires ARG re-declaration per stage)
 ARG BASE_IMAGE_NAME
