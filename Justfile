@@ -17,8 +17,8 @@ default:
 check:
     #!/usr/bin/env bash
     find . -type f -name "*.just" | while read -r file; do
-    	echo "Checking syntax: $file"
-    	just --unstable --fmt --check -f $file
+    echo "Checking syntax: $file"
+    just --unstable --fmt --check -f $file
     done
     echo "Checking syntax: Justfile"
     just --unstable --fmt --check -f Justfile
@@ -28,8 +28,8 @@ check:
 fix:
     #!/usr/bin/env bash
     find . -type f -name "*.just" | while read -r file; do
-    	echo "Checking syntax: $file"
-    	just --unstable --fmt -f $file
+    echo "Checking syntax: $file"
+    just --unstable --fmt -f $file
     done
     echo "Checking syntax: Justfile"
     just --unstable --fmt -f Justfile || { exit 1; }
