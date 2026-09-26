@@ -5,7 +5,7 @@ permissions:
 on:
   pull_request:
     paths:
-      - "custom/ujust/**"
+      - "rootfs/usr/share/ublue-os/just/**"
       - "Justfile"
 jobs:
   validate:

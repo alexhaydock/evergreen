@@ -16,6 +16,7 @@ copr_install_isolated "ublue-os/packages" "uupd"
 
 # Define package install set
 FEDORA_PACKAGES=(
+    ShellCheck
     age
     ansible
     ansible-lint
@@ -31,6 +32,7 @@ FEDORA_PACKAGES=(
     go
     hadolint
     iperf3
+    just
     links2
     make
     mediainfo
@@ -42,9 +44,9 @@ FEDORA_PACKAGES=(
     quickemu # Also pulls in QEMU
     rpi-imager # Flatpak updates too slowly: https://github.com/flathub/org.raspberrypi.rpi-imager/issues/66
     rpminspect
-    ShellCheck
     socat
     sshfs
+    tcpdump
     vhs # For creating shell recordings for documentation
     waypipe # Wayland session forwarding
     wireshark
@@ -63,8 +65,6 @@ EXCLUDED_PACKAGES=(
     fedora-bookmarks
     fedora-chromium-config
     fedora-chromium-config-gnome
-    firefox
-    firefox-langpacks
     gnome-extensions-app
     gnome-shell-extension-background-logo
     gnome-software

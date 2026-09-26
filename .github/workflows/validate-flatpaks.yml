@@ -5,7 +5,7 @@ permissions:
 on:
   pull_request:
     paths:
-      - "custom/flatpak/**"
+      - "rootfs/etc/flatpak/preinstall.d/**"
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -26,11 +26,11 @@ jobs:
 
           set -xeuo pipefail
 
-          find "custom/flatpak" -iname '*\.list*' -print0 | \
-            while IFS= read -r -d '' flatpaks_file ; do \
+          find "rootfs/etc/flatpak" -iname '*.preinstall' -print0 | \
+            while IFS= read -r -d '' flatpaks_file; do \
               echo "::group:: ===$(basename "$flatpaks_file")==="
-              grep -v "#.*" "$flatpaks_file" | grep -v "^$" | \
-                while read -r flatpak ; do \
+              sed -n 's/^\[Flatpak Preinstall \([^]]*\)\]$/\1/p' "$flatpaks_file" | \
+                while read -r flatpak; do \
                   flatpak remote-info --user flathub "${flatpak}"
                 done
               echo "::endgroup::"

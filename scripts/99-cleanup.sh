@@ -127,6 +127,7 @@ find "${CLEAN_ROOT:?}/run" -mindepth 1 -depth -print0 |
 # Remove tmp files and everything in dirs that make bootc unhappy
 rm -rf /tmp/* || true
 rm -rf /usr/etc
+# shellcheck disable=SC2114
 rm -rf /boot && mkdir /boot
 # Preserve cache mounts
 find /var/* -maxdepth 0 -type d \! -name cache \! -name log -exec rm -rf {} \;
