@@ -2,7 +2,7 @@
 # Image Identity #
 ##################
 ARG BASE_IMAGE_NAME="silverblue"
-ARG FEDORA_MAJOR_VERSION="44"
+ARG FEDORA_MAJOR_VERSION="45"
 ARG IMAGE_NAME="evergreen"
 ARG IMAGE_PRETTY_NAME="Evergreen"
 ARG IMAGE_VENDOR="alexhaydock"
