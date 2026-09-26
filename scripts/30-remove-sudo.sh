@@ -10,7 +10,7 @@ shopt -s nullglob
 
 rm -f /etc/dnf/protected.d/sudo.conf
 
-dnf remove -y --setopt=protected_packages=, sudo
+dnf5 remove -y --setopt=protected_packages=, sudo
 
 rm -rf /usr/bin/sudo
 
