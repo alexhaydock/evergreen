@@ -1,39 +1,5 @@
-###############################################################################
-# PROJECT NAME CONFIGURATION
-###############################################################################
-# Name: evergreen
-#
-# This name should be used consistently throughout the repository in:
-#   - Justfile: export image_name := env("IMAGE_NAME", "your-name-here")
-#   - README.md: # your-name-here (title)
-#   - artifacthub-repo.yml: repositoryID: your-name-here
-#   - custom/ujust/README.md: localhost/your-name-here:stable (in bootc switch example)
-#
-# The project name defined here is the single source of truth for your
-# custom image's identity. When changing it, update all references above
-# to maintain consistency.
-###############################################################################
-
-###############################################################################
-# MULTI-STAGE BUILD ARCHITECTURE
-###############################################################################
-# This Containerfile follows the Bluefin architecture pattern as implemented in
-# @projectbluefin/distroless. The architecture layers OCI containers together:
-#
-# 1. Context Stage (ctx) - Combines resources from:
-#    - Local build scripts and custom files
-#    - @projectbluefin/common - Desktop configuration shared with Aurora 
-#
-# 2. Base Image Options:
-#    - `ghcr.io/ublue-os/silverblue-main:latest` (Fedora and GNOME)
-#    - `ghcr.io/ublue-os/base-main:latest` (Fedora and no desktop 
-#    - `quay.io/centos-bootc/centos-bootc:stream10 (CentOS-based)` 
-#
-# See: https://docs.projectbluefin.io/contributing/ for architecture diagram
-###############################################################################
-
 ##################
-# Image Identity # - these define how bootc, fastfetch, and the ublue ecosystem recognize your image. Change these to match your project name.
+# Image Identity #
 ##################
 ARG BASE_IMAGE_NAME="silverblue"
 ARG FEDORA_MAJOR_VERSION="44"
@@ -43,12 +9,12 @@ ARG IMAGE_VENDOR="alexhaydock"
 ARG UBLUE_IMAGE_TAG="stable"
 
 ################
-# Import Stage # - Import the common image from Bluefin/Universal Blue upstream
+# Import Stage #
 ################
 FROM ghcr.io/getsops/sops:v3.13.3-alpine@sha256:ae501277bf742f1662e0f881f43dd8fd6798b489a8058e921dbf6cda597140ea as sops
 
 #################
-# Context Stage # - Combine local resources from this repo and Bluefin upstreams from their published OCI images
+# Context Stage #
 #################
 FROM scratch AS ctx
 
@@ -59,9 +25,9 @@ COPY rootfs /rootfs
 COPY --from=sops /usr/local/bin/sops /system_files/shared/usr/bin/sops
 
 ###############
-# Build Stage # - Use Silverblue base image and run buildscripts on top of it
+# Build Stage #
 ###############
-FROM ghcr.io/ublue-os/silverblue-main:latest@sha256:557312faeec8a7eaa2cf89cd980a566d51ab7a988bb6367033ad264d5a16aeb8
+FROM quay.io/fedora-ostree-desktops/silverblue:44
 
 # Re-declare ARGs for this stage (Docker requires ARG re-declaration per stage)
 ARG BASE_IMAGE_NAME
