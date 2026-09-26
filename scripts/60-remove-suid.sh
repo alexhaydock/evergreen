@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # Primarily based on secureblue's approach to doing this upstream:
 # https://github.com/secureblue/secureblue/blob/971b5b1a66e2a9b054cafa30decf405280207805/files/scripts/removesuid.sh#L16
@@ -38,4 +39,5 @@ set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/sbin/unix_chk
 # https://gitlab.freedesktop.org/spice/spice-gtk/-/blob/7a2779182b003ec5e8192dc5186f0b1c3eb8e831/src/spice-client-glib-usb-acl-helper.c#L304
 set_caps_if_present "cap_fowner=ep" "/usr/libexec/spice-gtk-$(uname -m)/spice-client-glib-usb-acl-helper"
 
+shopt -u nullglob
 echo "::endgroup::"

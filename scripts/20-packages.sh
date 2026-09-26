@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # Source helper functions
 # shellcheck source=/dev/null
@@ -93,4 +94,5 @@ fi
 # Add the Flathub Flatpak remote
 flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+shopt -u nullglob
 echo "::endgroup::"

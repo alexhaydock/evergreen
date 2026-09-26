@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 ###############################################################################
 # Image Info Generation
@@ -93,3 +94,6 @@ EOF
 
   echo "Customized ${OS_RELEASE}"
 fi
+
+shopt -u nullglob
+echo "::endgroup::"

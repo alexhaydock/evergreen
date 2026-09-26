@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # Apply preset files as created under /usr/lib/systemd/*-preset
 systemctl preset-all
@@ -13,4 +14,5 @@ systemctl --global preset-all
 # /etc/systemd subdirectory
 ln -sv /dev/null /etc/systemd/user/localsearch-3.service
 
+shopt -u nullglob
 echo "::endgroup::"

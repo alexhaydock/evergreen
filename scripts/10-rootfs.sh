@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # Copy sops binary
 # We put this in /usr/bin rather than /usr/local/bin
@@ -13,4 +14,5 @@ chmod +x /usr/bin/sops
 # Copy custom files from the rootfs/ dir in this repo
 rsync -rvK /ctx/rootfs/. /
 
+shopt -u nullglob
 echo "::endgroup::"

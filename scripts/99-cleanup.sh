@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # CLEAN_ROOT: filesystem prefix applied to all paths.
 # Defaults to "/" so the variable is never empty (satisfies SC2115).
@@ -140,4 +141,5 @@ chmod -R 1777 /var/tmp
 # ostree checks
 ostree container commit
 
+shopt -u nullglob
 echo "::endgroup::"
