@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # Source helper functions
 # shellcheck source=/dev/null
@@ -57,7 +58,7 @@ FEDORA_PACKAGES=(
 
 # Install all Fedora packages (bulk - safe from COPR injection)
 echo "Installing ${#FEDORA_PACKAGES[@]} packages from Fedora repos..."
-dnf -y install --allowerasing "${FEDORA_PACKAGES[@]}"
+dnf5 -y install --allowerasing "${FEDORA_PACKAGES[@]}"
 
 # Packages to exclude - common to all versions
 EXCLUDED_PACKAGES=(
@@ -84,7 +85,7 @@ EXCLUDED_PACKAGES=(
 if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
     readarray -t INSTALLED_EXCLUDED < <(rpm -qa --queryformat='%{NAME}\n' "${EXCLUDED_PACKAGES[@]}" 2>/dev/null || true)
     if [[ "${#INSTALLED_EXCLUDED[@]}" -gt 0 ]]; then
-        dnf -y remove "${INSTALLED_EXCLUDED[@]}"
+        dnf5 -y remove "${INSTALLED_EXCLUDED[@]}"
     else
         echo "No excluded packages found to remove."
     fi
@@ -93,4 +94,5 @@ fi
 # Add the Flathub Flatpak remote
 flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+shopt -u nullglob
 echo "::endgroup::"

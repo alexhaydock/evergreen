@@ -3,6 +3,7 @@
 echo "::group:: ===$(basename "$0")==="
 
 set -ouex pipefail
+shopt -s nullglob
 
 # CLEAN_ROOT: filesystem prefix applied to all paths.
 # Defaults to "/" so the variable is never empty (satisfies SC2115).
@@ -129,9 +130,6 @@ rm -rf /tmp/* || true
 rm -rf /usr/etc
 # shellcheck disable=SC2114
 rm -rf /boot && mkdir /boot
-# Preserve cache mounts
-find /var/* -maxdepth 0 -type d \! -name cache \! -name log -exec rm -rf {} \;
-find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 -exec rm -rf {} \;
 
 # Make sure /var/tmp is properly created
 mkdir -p /var/tmp
@@ -140,4 +138,5 @@ chmod -R 1777 /var/tmp
 # ostree checks
 ostree container commit
 
+shopt -u nullglob
 echo "::endgroup::"

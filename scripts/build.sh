@@ -16,7 +16,7 @@ shopt -s nullglob
 # directory (in numbered preference order)
 for i in /ctx/scripts/[0-9][0-9]-*.sh; do
   [[ -f "$i" ]] || continue
-  "$i"
+  bash "$i"
 done
 
 # Restore default glob behavior

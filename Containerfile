@@ -2,7 +2,7 @@
 # Image Identity #
 ##################
 ARG BASE_IMAGE_NAME="silverblue"
-ARG FEDORA_MAJOR_VERSION="44"
+ARG FEDORA_MAJOR_VERSION="45"
 ARG IMAGE_NAME="evergreen"
 ARG IMAGE_PRETTY_NAME="Evergreen"
 ARG IMAGE_VENDOR="alexhaydock"
@@ -44,7 +44,6 @@ ARG VERSION=""
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/cache/rpm-ostree \
-    --mount=type=secret,id=GITHUB_TOKEN \
     --mount=type=tmpfs,dst=/boot \
     --mount=type=tmpfs,dst=/tmp \
     bash -euo pipefail -c ' \
