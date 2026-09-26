@@ -29,7 +29,7 @@ find /usr -type f -perm /6000 -print0 | while IFS= read -r -d '' binary; do
 done
 
 # Remove some executables we specifically don't want
-rm -f /usr/bin/chsh /usr/bin/chfn /usr/bin/pkexec /usr/bin/sudo /usr/bin/su
+rm -f /usr/bin/chsh /usr/bin/chfn /usr/bin/pkexec /usr/bin/su
 
 # Set capabilities on some binaries that need them
 set_caps_if_present "cap_sys_admin=ep" "/usr/bin/fusermount3"
