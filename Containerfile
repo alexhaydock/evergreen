@@ -44,7 +44,6 @@ ARG VERSION=""
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache/libdnf5 \
     --mount=type=cache,dst=/var/cache/rpm-ostree \
-    --mount=type=secret,id=GITHUB_TOKEN \
     --mount=type=tmpfs,dst=/boot \
     --mount=type=tmpfs,dst=/tmp \
     bash -euo pipefail -c ' \
