@@ -130,9 +130,6 @@ rm -rf /tmp/* || true
 rm -rf /usr/etc
 # shellcheck disable=SC2114
 rm -rf /boot && mkdir /boot
-# Preserve cache mounts
-find /var/* -maxdepth 0 -type d \! -name cache \! -name log -exec rm -rf {} \;
-find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 -exec rm -rf {} \;
 
 # Make sure /var/tmp is properly created
 mkdir -p /var/tmp
