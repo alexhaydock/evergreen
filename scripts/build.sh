@@ -19,6 +19,9 @@ for i in /ctx/scripts/[0-9][0-9]-*.sh; do
   bash "$i"
 done
 
+# Rebuild initramfs to account for branding we've updated
+bash /ctx/scripts/build-initramfs.sh
+
 # Restore default glob behavior
 shopt -u nullglob
 
