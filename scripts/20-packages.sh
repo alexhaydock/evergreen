@@ -31,6 +31,8 @@ FEDORA_PACKAGES=(
     fakeroot
     fastfetch
     go
+    greenboot
+    greenboot-default-health-checks
     hadolint
     iperf3
     just
