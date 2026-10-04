@@ -6,3 +6,6 @@
 
 [Flatpak Preinstall org.kde.kate]
 Branch=stable
+
+[Flatpak Preinstall com.vscodium.codium]
+Branch=stable
