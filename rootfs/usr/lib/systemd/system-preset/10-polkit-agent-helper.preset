@@ -1,0 +1,4 @@
+# Enable the socket-activated polkit-agent-helper
+# which allows us to run without SUID
+# See: https://github.com/polkit-org/polkit/commit/c007940054392b67b84b6044dda8a215040d8eb5
+enable polkit-agent-helper.socket

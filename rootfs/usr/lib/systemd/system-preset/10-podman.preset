@@ -1,0 +1,4 @@
+# Podman API service socket
+# Listens on /run/podman/podman.sock
+# Enabled as a socket as we don't need the API service all the time
+enable podman.socket
