@@ -1,0 +1,2 @@
+# Disable RAID check as I don't use any RAID volumes
+disable raid-check.timer
