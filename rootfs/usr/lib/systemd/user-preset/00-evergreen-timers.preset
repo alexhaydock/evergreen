@@ -1,5 +1,0 @@
-# Podman auto update timer
-enable podman-auto-update.timer
-
-# Flatpak auto update timer
-enable flatpak-user-update.timer

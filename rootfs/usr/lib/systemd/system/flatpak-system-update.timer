@@ -1,8 +1,13 @@
+[Unit]
+Description=Flatpak Automatic Update Trigger
+Documentation=man:flatpak(1)
+
 [Timer]
-# Override existing OnCalendar timings
-OnCalendar=
 # Set to run 10m after boot and every 4h
 OnBootSec=10m
 OnUnitActiveSec=4h
 Persistent=true
 RandomizedDelaySec=10m
+
+[Install]
+WantedBy=timers.target

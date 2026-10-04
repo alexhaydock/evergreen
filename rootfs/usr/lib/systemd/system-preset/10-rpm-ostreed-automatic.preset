@@ -1,0 +1,3 @@
+# Disable the old rpm-ostree timer if it exists
+# since we're using bootc and not rpm-ostree
+disable rpm-ostreed-automatic.timer
