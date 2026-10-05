@@ -1,0 +1,3 @@
+# Enable Greenboot so we can validate boot success
+# See: https://github.com/fedora-iot/greenboot-rs#usage
+enable greenboot-healthcheck.service
