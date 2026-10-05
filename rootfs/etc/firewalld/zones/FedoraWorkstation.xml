@@ -5,5 +5,4 @@
 
   <!-- Include an exhaustive list of services to enable -->
   <service name="mdns"/>
-  <service name="ssh"/>
 </zone>
