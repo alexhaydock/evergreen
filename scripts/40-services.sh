@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "::group:: ===$(basename "$0")==="
+trap 'echo "::endgroup::"' EXIT
 
 set -ouex pipefail
 shopt -s nullglob
@@ -15,4 +16,3 @@ systemctl --global preset-all
 ln -sv /dev/null /etc/systemd/user/localsearch-3.service
 
 shopt -u nullglob
-echo "::endgroup::"
