@@ -1,0 +1,6 @@
+# Set UK keyboard. Extra useful as the installer we get
+# with build-iso defaults to only installing in US mode
+# and this isn't selectable during installation.
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'gb')]
+current=0
