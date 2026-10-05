@@ -9,9 +9,9 @@ case $- in
         if ! command -v sudo > /dev/null; then
             sudo() {
                 printf 'Evergreen uninstalls \033[1msudo\033[22m for security reasons.\n' >&2
-                printf 'To run commands as root, you can use \033[1mrun0 -i\033[22m instead.\n' >&2
-                printf 'To get a root shell, run \033[1mrun0\033[22m on its own.\n' >&2
-                command sudo "$@"
+                printf 'To run commands as root, you can use \033[1mrun0 <command>\033[22m instead.\n' >&2
+                printf 'To get a root shell, run \033[1mrun0 -i\033[22m.\n' >&2
+                command run0 "$@"
             }
         fi
         ;;
