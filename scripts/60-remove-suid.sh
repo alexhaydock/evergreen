@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "::group:: ===$(basename "$0")==="
+trap 'echo "::endgroup::"' EXIT
 
 set -ouex pipefail
 shopt -s nullglob
@@ -40,4 +41,3 @@ set_caps_if_present "cap_dac_read_search,cap_audit_write=ep" "/usr/sbin/unix_chk
 set_caps_if_present "cap_fowner=ep" "/usr/libexec/spice-gtk-$(uname -m)/spice-client-glib-usb-acl-helper"
 
 shopt -u nullglob
-echo "::endgroup::"

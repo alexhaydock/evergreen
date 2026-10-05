@@ -1,0 +1,5 @@
+[org/gnome/gnome-system-monitor]
+graph-update-interval=3000
+network-in-bits=true
+resources-memory-in-iec=true
+show-whose-processes='all'

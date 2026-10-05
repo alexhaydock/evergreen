@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "::group:: ===$(basename "$0")==="
+trap 'echo "::endgroup::"' EXIT
 
 set -ouex pipefail
 shopt -s nullglob
@@ -139,4 +140,3 @@ chmod -R 1777 /var/tmp
 ostree container commit
 
 shopt -u nullglob
-echo "::endgroup::"

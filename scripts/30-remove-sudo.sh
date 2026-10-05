@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "::group:: ===$(basename "$0")==="
+trap 'echo "::endgroup::"' EXIT
 
 set -ouex pipefail
 shopt -s nullglob
@@ -15,4 +16,3 @@ dnf5 remove -y --setopt=protected_packages=, sudo
 rm -rf /usr/bin/sudo
 
 shopt -u nullglob
-echo "::endgroup::"

@@ -1,0 +1,3 @@
+[org/gnome/nautilus/preferences]
+recursive-search='always'
+show-image-thumbnails='always'
