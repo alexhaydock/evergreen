@@ -9,6 +9,6 @@ trap 'echo "::endgroup::"' EXIT
 set -ouex pipefail
 shopt -s nullglob
 
-mkdir /etc/dconf/db/distro.d/locks
+mkdir -p /etc/dconf/db/distro.d/locks
 
 for f in /etc/dconf/db/distro.d/99-*; do [ -f "$f" ] && awk '/^\[.*\]/{g=$0; gsub(/^\[|\]$/,"",g); next} /^[[:space:]]*($|#|;)/{next} /=/{k=$0; sub(/=.*/,"",k); gsub(/^[[:space:]]+|[[:space:]]+$/,"",k); print "/" g "/" k}' "$f" > "/etc/dconf/db/distro.d/locks/$(basename "$f")"; done
