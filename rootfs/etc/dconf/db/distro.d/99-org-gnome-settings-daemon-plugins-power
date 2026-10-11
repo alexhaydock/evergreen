@@ -1,4 +1,3 @@
 [org/gnome/settings-daemon/plugins/power]
 ambient-enabled=false
-sleep-inactive-ac-type='suspend'
-sleep-inactive-ac-timeout=3600
+sleep-inactive-ac-type='nothing'
