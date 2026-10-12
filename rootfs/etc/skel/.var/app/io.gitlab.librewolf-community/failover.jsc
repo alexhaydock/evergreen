@@ -1,0 +1,11 @@
+defaultPref("browser.startup.page", 3);
+defaultPref("network.cookie.lifetimePolicy", 0);
+defaultPref("network.trr.mode", 3);
+defaultPref("network.trr.uri", "https://dns.infected.systems/dns-query");
+defaultPref("privacy.clearOnShutdown_v2.cache", false);
+defaultPref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
+defaultPref("privacy.resistFingerprinting", false);
+defaultPref("signon.firefoxRelay.feature", "disabled");
+defaultPref("signon.generation.enabled", false);
+defaultPref("signon.management.page.breach-alerts.enabled", false);
+defaultPref("signon.rememberSignons", true);
