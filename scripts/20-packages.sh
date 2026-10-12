@@ -82,6 +82,7 @@ EXCLUDED_PACKAGES=(
     sssd-krb5-common
     sssd-nfs-idmap
     yelp
+    yubikey-manager
 )
 
 # Remove excluded packages if they are installed
