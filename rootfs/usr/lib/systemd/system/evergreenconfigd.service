@@ -1,0 +1,11 @@
+[Unit]
+Description=Evergreen semi-declarative config daemon
+After=local-fs.target
+Before=display-manager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/evergreenconfigd
+
+[Install]
+WantedBy=multi-user.target

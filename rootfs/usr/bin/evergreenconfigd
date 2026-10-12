@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+shopt -s nullglob dotglob
+
+# Ensure anything in .skel is enforced declaratively for UID 1000
+(
+    cd /etc/skel
+    find . -type f -exec echo rsync -a --relative --checksum --chown="1000:1000" {} /var/home/user/ \;
+)
+
+# TODO: Configure Tor Browser with EO exits
+# TODO: Enforce Librewolf config
