@@ -4,7 +4,7 @@ set -euo pipefail
 shopt -s nullglob dotglob
 
 # Identify username of UID1000
-MAINUSER="$(id -n -u 1000)"
+export MAINUSER="$(id -n -u 1000)"
 
 # Ensure anything in .skel is enforced declaratively for UID1000
 (
