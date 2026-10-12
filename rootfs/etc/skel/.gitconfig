@@ -1,7 +1,7 @@
 [user]
 	name = Alex Haydock
 	email = alex@alexhaydock.co.uk
-	signingkey = /Users/user/.ssh/id_ed25519_Git.pub
+	signingkey = ~/.ssh/id_ed25519_Git.pub
 
 [commit]
 	gpgsign = true
