@@ -3,11 +3,17 @@
 set -euo pipefail
 shopt -s nullglob dotglob
 
-# Ensure anything in .skel is enforced declaratively for UID 1000
+# Identify username of UID1000
+export MAINUSER="$(id -n -u 1000)"
+
+# Ensure anything in .skel is enforced declaratively for UID1000
 (
-    cd /etc/skel
-    find . -type f -exec rsync -a --relative --checksum --chown="1000:1000" {} /var/home/user/ \;
+    cd "/etc/skel"
+    find . -type f -exec rsync -a --relative --checksum --chown="1000:1000" {} /var/home/${MAINUSER}/ \;
 )
 
-# TODO: Configure Tor Browser with EO exits
-# TODO: Enforce Librewolf config
+# Ensure LibreWolf configuration overrides are enforced in the default profile(s) for the UID1000 user
+find /var/home/${MAINUSER}/.var/app/io.gitlab.librewolf-community -type d -iname "*.default" -exec rsync -a --checksum --chown="1000:1000" /etc/skel/.var/app/io.gitlab.librewolf-community/failover.jsc {}/failover.jsc \;
+
+# Ensure Tor Browser is configured to use Emerald Onion exit nodes for UID1000 user
+grep 'ExitNodes 23.129.64.0/24' "/var/home/${MAINUSER}/.var/app/org.torproject.torbrowser-launcher/data/torbrowser/tbb/x86_64/tor-browser/Browser/TorBrowser/Data/Tor/torrc" || echo 'ExitNodes 23.129.64.0/24' | tee --append "/var/home/${MAINUSER}/.var/app/org.torproject.torbrowser-launcher/data/torbrowser/tbb/x86_64/tor-browser/Browser/TorBrowser/Data/Tor/torrc"

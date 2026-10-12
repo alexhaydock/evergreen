@@ -7,5 +7,5 @@
 [Flatpak Preinstall org.kde.kate]
 Branch=stable
 
-[Flatpak Preinstall com.vscodium.codium]
+[Flatpak Preinstall com.visualstudio.code]
 Branch=stable
