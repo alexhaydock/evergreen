@@ -2,7 +2,7 @@ export IMAGE_NAME := env("IMAGE_NAME", "evergreen")
 export DEFAULT_TAG := env("DEFAULT_TAG", "stable")
 export PODMAN := env("PODMAN", "podman")
 export REPO_ORG := env("GITHUB_REPOSITORY_OWNER", "alexhaydock")
-export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest@sha256:463fd600d0578bce8b33d334092d91353ed1c3690d16756d7c5b4abd5e606456")
+export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest@sha256:ef5ac034600d25bc6df243fe2bed56ae401faf540b97a0687e2c410e7b34a646")
 
 alias build-vm := build-qcow2
 alias rebuild-vm := rebuild-qcow2
