@@ -9,3 +9,6 @@ Branch=stable
 
 [Flatpak Preinstall com.visualstudio.code]
 Branch=stable
+
+[Flatpak Preinstall org.godotengine.Godot]
+Branch=stable
