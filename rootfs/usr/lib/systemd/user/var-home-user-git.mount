@@ -1,0 +1,16 @@
+[Unit]
+Description=Mount Media via SSHFS
+# Wait for network to be fully up before trying to mount
+# See: https://systemd.io/NETWORK_ONLINE/
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=code.infected.systems:/root/git
+Where=/var/home/user/git
+Type=fuse.sshfs
+Options=_netdev,reconnect,ServerAliveInterval=5,ServerAliveCountMax=3,idmap=user,IdentityFile=/var/home/user/.ssh/id_ed25519_Primary,x-systemd.automount
+TimeoutSec=60
+
+[Install]
+WantedBy=default.target
