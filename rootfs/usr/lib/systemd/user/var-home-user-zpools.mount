@@ -1,5 +1,5 @@
 [Unit]
-Description=Mount Media via SSHFS
+Description=SSHFS Media Mount
 # Wait for network to be fully up before trying to mount
 # See: https://systemd.io/NETWORK_ONLINE/
 After=network-online.target
