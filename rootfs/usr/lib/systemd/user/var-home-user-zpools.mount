@@ -1,0 +1,16 @@
+[Unit]
+Description=SSHFS Media Mount
+# Wait for network to be fully up before trying to mount
+# See: https://systemd.io/NETWORK_ONLINE/
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=media.infected.systems:/zpools
+Where=/var/home/user/zpools
+Type=fuse.sshfs
+Options=_netdev,reconnect,ServerAliveInterval=5,ServerAliveCountMax=3,idmap=user,IdentityFile=/var/home/user/.ssh/id_ed25519_Primary,x-systemd.automount
+TimeoutSec=60
+
+[Install]
+WantedBy=default.target
