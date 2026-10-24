@@ -1,2 +1,2 @@
-# This list will be replaced by the 50-dns.sh script
+# This file will be populated by 50-adblock.sh
 # during the evergreen image build process.

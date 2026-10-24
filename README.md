@@ -4,6 +4,8 @@ A custom Atomic Fedora build for my own workstation use.
 
 The aim is for all the static config for my OS to live in this repo - making this my attempt at building a 'best of both worlds' somewhere between Nix's declarative config and `bootc`'s OCI-based composable images.
 
+This image is crafted specfically for my own use and isn't intended for public consumption, but I post it publicly since it might be interesting to some or useful as a base to build your own version from.
+
 ## Rebasing to this image
 
 ### Daily channel
@@ -31,25 +33,9 @@ cosign verify \
   ghcr.io/alexhaydock/evergreen:stable-daily
 ```
 
+This uses the old Cosign signing format until [this Podman issue](https://github.com/podman-container-tools/container-libs/issues/388) gets resolved.
+
 This key is also used by `podman`/`bootc` to validate image updates to the installed system (this is enforced by `/etc/containers/policy.json`).
-
-## Development Notes
-
-### Local testing
-
-Test changes before pushing:
-
-```bash
-just build                    # Build container image
-just build && just build-iso  # Build installation ISO
-just build-qcow2              # Build VM disk image
-just run-vm-qcow2             # Test in browser-based VM
-```
-
-## Troubleshooting
-
-### Flatpaks not preinstalled after bootc switch
-If Flatpaks added to the preinstall files in `/etc/flatpak/preinstall.d/*.preinstall` do not get automatically installed after a `bootc switch`, check that the `flatpak-preinstall.service` has not exited with any errors. A `systemctl restart flatpak-preinstall.service` may help.
 
 ## Future Goals
 * Investigate opportunities for transparency logging (and client-side validation) using Sigstore/Sigsum
@@ -60,6 +46,6 @@ If Flatpaks added to the preinstall files in `/etc/flatpak/preinstall.d/*.preins
     * This would allow us to get all the benefits of Secure Boot etc on the upstream Fedora kernel without any downstream complexity. It relies on Silverblue rebasing from `rpm-ostree` to `bootc` first though.
 
 ## Acknowledgements
-Based fairly heavily on the [finpilot](https://github.com/projectbluefin/finpilot) getting started kit by the Bluefin / Universal Blue team, with downstream modifications to fit my own purposes.
+The initial version of this repo was based fairly heavily on the [finpilot](https://github.com/projectbluefin/finpilot) getting started kit by the Bluefin / Universal Blue team, with downstream modifications to fit my own purposes. A lot of the CI jobs are still imported directly from Universal Blue.
 
 Thanks also to the [secureblue](https://github.com/secureblue/secureblue) team for some of the security hardening configs applied in this repo as well as the idea to ship without `sudo`. I've tried to leave the filenames / preambles intact where I've cherry-picked configs from the secureblue upstream.
