@@ -7,5 +7,7 @@ PublishPort=127.0.0.1:9150:9150
 AutoUpdate=registry
 AutoRemove=true
 
+# Ensure container starts automatically
+# (we don't need preset files for Quadlets)
 [Install]
 WantedBy=default.target
