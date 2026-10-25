@@ -60,6 +60,7 @@ FEDORA_PACKAGES=(
     yamllint
     yq
     yt-dlp
+    yubikey-manager
 )
 
 # Install all Fedora packages (bulk - safe from COPR injection)
@@ -85,7 +86,6 @@ EXCLUDED_PACKAGES=(
     sssd-krb5-common
     sssd-nfs-idmap
     yelp
-    yubikey-manager
 )
 
 # Remove excluded packages if they are installed
