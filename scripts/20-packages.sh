@@ -18,7 +18,6 @@ copr_install_isolated "ublue-os/packages" "uupd"
 
 # Define package install set
 FEDORA_PACKAGES=(
-    ShellCheck
     age
     ansible
     ansible-lint
@@ -32,6 +31,7 @@ FEDORA_PACKAGES=(
     dnsconfd-unbound # Bring in Unbound and the corresponding dnsconfd management service
     fakeroot
     fastfetch
+    fedora-packager # Fedora RPM packaging tools: https://docs.fedoraproject.org/en-US/package-maintainers/Installing_Packager_Tools/
     go
     greenboot
     greenboot-default-health-checks
@@ -49,6 +49,8 @@ FEDORA_PACKAGES=(
     quickemu # Also pulls in QEMU
     rpi-imager # Flatpak updates too slowly: https://github.com/flathub/org.raspberrypi.rpi-imager/issues/66
     rpminspect
+    rust2rpm # Fedora packaging helper for Rust Crates: https://docs.fedoraproject.org/en-US/packaging-guidelines/Rust/#_rust2rpm
+    ShellCheck
     socat
     sshfs
     tcpdump
