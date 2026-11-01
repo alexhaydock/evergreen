@@ -33,7 +33,7 @@ FEDORA_PACKAGES=(
     fastfetch
     fedora-packager # Fedora RPM packaging tools: https://docs.fedoraproject.org/en-US/package-maintainers/Installing_Packager_Tools/
     go
-    go2rpm # Fedora packaging helper for Golang: https://docs.fedoraproject.org/en-US/packaging-guidelines/Golang/#_go2rpm
+    go2rpm+vendor # Fedora packaging helper for Golang: https://gitlab.com/fedora/sigs/go/go2rpm/-/tree/f9ec6df89c0e39bad6b0c4b27d7d5284dd80c900#bundled-vendored-dependencies
     greenboot
     greenboot-default-health-checks
     hadolint
