@@ -10,10 +10,15 @@ shopt -s nullglob
 # shellcheck source=/dev/null
 source /ctx/scripts/copr-helpers.sh
 
-# Install Universal Blue update service
+# Install uupd from ublue-os/packages
 copr_install_isolated "ublue-os/packages" "uupd"
 
-# Bring in NetworkManager dev branch for access to CLAT
+# Install ssh-tpm-agent from alexhaydock/ssh-tpm-agent
+copr_install_isolated "alexhaydock/ssh-tpm-agent" "ssh-tpm-agent"
+
+# Upgrade NetworkManager from networkmanager/NetworkManager-main
+# (Originally here to bring in CLAT support before Fedora 45 landed
+# but kept as a good example of using COPR to replace system packages)
 #copr_upgrade_isolated "networkmanager/NetworkManager-main" "NetworkManager"
 
 # Define package install set
