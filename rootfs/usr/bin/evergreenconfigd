@@ -17,3 +17,11 @@ find /var/home/${MAINUSER}/.var/app/io.gitlab.librewolf-community -type d -iname
 
 # Ensure Tor Browser is configured to use Emerald Onion exit nodes for UID1000 user
 grep --quiet 'ExitNodes 23.129.64.0/24' "/var/home/${MAINUSER}/.var/app/org.torproject.torbrowser-launcher/data/torbrowser/tbb/x86_64/tor-browser/Browser/TorBrowser/Data/Tor/torrc" || echo 'ExitNodes 23.129.64.0/24' | tee --append "/var/home/${MAINUSER}/.var/app/org.torproject.torbrowser-launcher/data/torbrowser/tbb/x86_64/tor-browser/Browser/TorBrowser/Data/Tor/torrc" >/dev/null
+
+# Ensure main user is in the `tss` group to provide TPM access for things like ssh-tpm-agent
+grep --quiet "tss" /etc/group || grep "tss" /usr/lib/group | tee -a /etc/group >/dev/null
+id -nG "${MAINUSER}" | grep -qw tss || usermod -aG tss "${MAINUSER}"
+
+# Ensure main user is in the `wireshark` group
+grep --quiet "wireshark" /etc/group || grep "wireshark" /usr/lib/group | tee -a /etc/group >/dev/null
+id -nG "${MAINUSER}" | grep -qw wireshark || usermod -aG wireshark "${MAINUSER}"
