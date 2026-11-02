@@ -19,7 +19,9 @@ find /var/home/${MAINUSER}/.var/app/io.gitlab.librewolf-community -type d -iname
 grep --quiet 'ExitNodes 23.129.64.0/24' "/var/home/${MAINUSER}/.var/app/org.torproject.torbrowser-launcher/data/torbrowser/tbb/x86_64/tor-browser/Browser/TorBrowser/Data/Tor/torrc" || echo 'ExitNodes 23.129.64.0/24' | tee --append "/var/home/${MAINUSER}/.var/app/org.torproject.torbrowser-launcher/data/torbrowser/tbb/x86_64/tor-browser/Browser/TorBrowser/Data/Tor/torrc" >/dev/null
 
 # Ensure main user is in the `tss` group to provide TPM access for things like ssh-tpm-agent
+grep "tss" /etc/group || grep "tss" /usr/lib/group | tee -a /etc/group
 id -nG "${MAINUSER}" | grep -qw tss || usermod -aG tss "${MAINUSER}"
 
 # Ensure main user is in the `wireshark` group
+grep "wireshark" /etc/group || grep "wireshark" /usr/lib/group | tee -a /etc/group
 id -nG "${MAINUSER}" | grep -qw wireshark || usermod -aG wireshark "${MAINUSER}"
