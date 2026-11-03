@@ -10,7 +10,7 @@ Requires=ssh-tpm-agent.socket
 What=media.infected.systems:/zpools
 Where=/var/home/user/zpools
 Type=fuse.sshfs
-Options=_netdev,reconnect,ServerAliveInterval=5,ServerAliveCountMax=3,idmap=user,IdentityFile=/var/home/user/.ssh/id_TPM-fw_ecdsa,x-systemd.automount
+Options=_netdev,reconnect,ServerAliveInterval=5,ServerAliveCountMax=3,idmap=user,IdentityFile=/var/home/user/.ssh/id_TPM-fw_ecdsa
 TimeoutSec=60
 
 [Install]
