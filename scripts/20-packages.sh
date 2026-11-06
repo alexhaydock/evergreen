@@ -54,7 +54,6 @@ FEDORA_PACKAGES=(
     optipng
     pre-commit
     quickemu # Also pulls in QEMU
-    rpi-imager # Flatpak updates too slowly: https://github.com/flathub/org.raspberrypi.rpi-imager/issues/66
     rpminspect
     rust2rpm # Fedora packaging helper for Rust Crates: https://docs.fedoraproject.org/en-US/packaging-guidelines/Rust/#_rust2rpm
     ShellCheck

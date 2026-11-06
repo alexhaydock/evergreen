@@ -24,3 +24,6 @@ Branch=stable
 
 [Flatpak Preinstall com.ranfdev.DistroShelf]
 Branch=stable
+
+[Flatpak Preinstall org.raspberrypi.rpi-imager]
+Branch=stable
