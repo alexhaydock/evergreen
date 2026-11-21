@@ -1,0 +1,5 @@
+---
+directory: /var/home/user/navidrome/beets-managed
+import:
+  copy: true  # Copy files rather than moving them
+  write: true
