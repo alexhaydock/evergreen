@@ -27,7 +27,7 @@ COPY --from=sops /usr/local/bin/sops /system_files/shared/usr/bin/sops
 ###############
 # Build Stage #
 ###############
-FROM quay.io/fedora-ostree-desktops/silverblue:45@sha256:416825e5021f1baf8eea919883a00c91ced47ebc143cab5aa49c448f1167183f
+FROM quay.io/fedora-ostree-desktops/silverblue:45@sha256:fd5f283433aef5b4c6c3489f69434589be16eb569fe54c115939b546245bed93
 
 # Re-declare ARGs for this stage (Docker requires ARG re-declaration per stage)
 ARG BASE_IMAGE_NAME
