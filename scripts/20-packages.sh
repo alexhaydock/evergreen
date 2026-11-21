@@ -55,6 +55,7 @@ FEDORA_PACKAGES=(
     pre-commit
     quickemu # Also pulls in QEMU
     rpminspect
+    rsgain  # ReplayGain tool for audio files
     rust2rpm # Fedora packaging helper for Rust Crates: https://docs.fedoraproject.org/en-US/packaging-guidelines/Rust/#_rust2rpm
     ShellCheck
     socat
