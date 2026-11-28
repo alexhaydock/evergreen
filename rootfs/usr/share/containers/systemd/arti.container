@@ -2,7 +2,7 @@
 Description=Arti Tor Proxy
 
 [Container]
-Image=ghcr.io/alexhaydock/arti-container:main@sha256:6903dadaf3744e64eb124341ea88744c8dd0a8d1ddce954a0c1d95aed5b06c3b
+Image=ghcr.io/alexhaydock/arti-container:main@sha256:2f238a949a91392d7e21db8d435c5403735d724f105c56bbc08f4000f9e8800d
 PublishPort=127.0.0.1:9150:9150
 AutoUpdate=registry
 
